@@ -1,0 +1,140 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b1cef4">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dip"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAlignment="center"
+        android:text="Add New Dish"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:textColor="#ffffff"
+        android:id="@+id/textView"
+        android:background="#3f51B5"
+        android:layout_weight="10"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tablelayout2"
+        android:background="#ffffff"
+        android:layout_weight="80"
+        android:isScrollContainer="false"
+        android:padding="10dp">
+        <TableRow>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Category:"
+                android:id="@+id/textView2"
+                android:layout_weight="15"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/category_dishTextView"
+                android:layout_weight="85"/>
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Dish Name:"
+                android:id="@+id/textView3"
+                android:layout_weight="15"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dishNameEditText"
+                android:layout_weight="85"/>
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Price:"
+                android:id="@+id/textView4"
+                android:layout_weight="15" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/priceEditText"
+                android:layout_weight="85"/>
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Description:"
+                android:id="@+id/textView5"
+                android:layout_weight="15"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:id="@+id/descriptionEditText"
+                android:layout_gravity="clip_horizontal"
+                android:layout_weight="85"/>
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Availability: "
+                android:id="@+id/textView6"
+                android:layout_weight="15" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/availabilityEditText"
+                android:layout_weight="85"/>
+
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="#FFC61717"
+            android:textColor="#ffffff"
+            android:textSize="35sp"
+            android:text="OK"
+            android:id="@+id/addDishButtonOK"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="10"
+            android:layout_marginRight="5dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="#FFC61717"
+            android:textColor="#ffffff"
+            android:textSize="35sp"
+            android:text="Cancel"
+            android:id="@+id/homeButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="10"/>
+    </LinearLayout>
+</LinearLayout>
