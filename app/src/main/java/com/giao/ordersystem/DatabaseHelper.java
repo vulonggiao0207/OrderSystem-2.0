@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DishPrice="DishPrice";
     public static final String DishDescription="DishDescription";
     public static final String DishAvailability="DishAvailability";
-    private static final int DATABASE_VERSION=5;
+    private static final int DATABASE_VERSION=1;
 
     private static Context context;
     public DatabaseHelper(Context context)

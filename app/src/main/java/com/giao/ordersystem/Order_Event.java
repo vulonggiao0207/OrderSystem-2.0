@@ -86,7 +86,7 @@ public class Order_Event extends Activity {
             orderDAO.close();
             //and print it out
             PrinterSetting_Event printer_event= new PrinterSetting_Event();
-            printer_event.sendData(tableName,order_viewArrayList,orderBO);
+            printer_event.btnSend_onClick(tableName,order_viewArrayList,orderBO);
 
         }
         catch (Exception e)

@@ -18,17 +18,19 @@ public class MainActivity_Event extends Activity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-
+    private Activity activity;
     private final Context context;
-    public MainActivity_Event(Context _context) {
+    //public MainActivity_Event(Context _context)
+    public MainActivity_Event(Activity _activity,Context _context)
+    {
         context=_context;
+        activity=_activity;
     }
 
     public void orderButton_Click() {
         Intent orderIntent = new Intent(context,Order.class);
         orderIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(orderIntent);
-
     }
 
     public void menuButton_Click() {
@@ -50,8 +52,9 @@ public class MainActivity_Event extends Activity {
     public void printerSettingButton_Click()
     {
         Intent orderIntent = new Intent(context,PrinterSetting.class);
-        orderIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(orderIntent);
+        //orderIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivityForResult(orderIntent, RESULT_OK);
+        //context.startActivity(orderIntent);
     }
     public void exitButton_Click() {
         android.os.Process.killProcess(Process.myPid());

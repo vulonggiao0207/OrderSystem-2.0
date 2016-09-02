@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Order extends Activity{
    // private Tables_Event table_event;
     private Order_Event event;
-    private Order_Details_Event orderDetails_event;
+//    private Order_Details_Event orderDetails_event;
     private OrderInfo_Event orderInfo_event;
     private static Button orderButton;
     private static ListView orderListView;
@@ -49,7 +49,7 @@ public class Order extends Activity{
         //tables_event= new Tables_Event(this.getApplicationContext());
       //  table_event= new Tables_Event(this.getBaseContext());
         event= new Order_Event(this.getBaseContext(),this);
-        orderDetails_event= new Order_Details_Event(this.getBaseContext(),this);
+        //orderDetails_event= new Order_Details_Event(this.getBaseContext(),this);
         orderInfo_event= new OrderInfo_Event(this.getBaseContext());
         //Declare Controls
         tableSpinner= (Spinner)findViewById(R.id.tableSpinner);

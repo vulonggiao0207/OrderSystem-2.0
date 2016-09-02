@@ -10,7 +10,7 @@
     <string name="btnSearch">Connect  Bluetooth  Printer</string>
     <string name="btnSend">Print</string>
     <string name="btn_test">Print  Test  Page</string>
-    <string name="btnClose">Close</string>
+    <string name="btnClose">Stop connecting</string>
     <string name="txt_content">&quot;&quot;</string>
     <string name="menu_settings">set</string>
     <string name="strLang">en</string>
