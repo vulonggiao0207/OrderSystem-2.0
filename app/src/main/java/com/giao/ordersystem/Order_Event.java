@@ -85,7 +85,7 @@ public class Order_Event extends Activity {
             OrderBO orderBO=orderDAO.itemOrder(Integer.toString(orderID));
             orderDAO.close();
             //and print it out
-            PrinterSetting_Event printer_event= new PrinterSetting_Event();
+            PrinterSetting_Event printer_event= new PrinterSetting_Event(context);
             printer_event.btnSend_onClick(tableName,order_viewArrayList,orderBO);
 
         }

@@ -3,18 +3,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#b1cef4">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:textColor="#000000"
+            android:background="#b1cef4"
+            android:text="Back"
+            android:id="@+id/homeButton"
+            android:layout_weight="10"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:textColor="#ffffff"
+            android:id="@+id/textViewtemp"
+            android:layout_weight="10"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:textColor="#000000"
+            android:background="#b1cef4"
+            android:text="Save"
+            android:id="@+id/addDishButtonOK"
+            android:layout_weight="10"/>
+    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="70dip"
-        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:layout_height="45dip"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textAlignment="center"
         android:text="Add New Dish"
         android:textStyle="bold"
         android:textSize="32sp"
-        android:textColor="#ffffff"
+        android:textColor="#b1cef4"
         android:id="@+id/textView"
-        android:background="#3f51B5"
+        android:background="#ffffff"
         android:layout_weight="10"/>
     <TableLayout
         android:layout_width="match_parent"
@@ -112,29 +141,5 @@
         </TableRow>
     </TableLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:background="#FFC61717"
-            android:textColor="#ffffff"
-            android:textSize="35sp"
-            android:text="OK"
-            android:id="@+id/addDishButtonOK"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="10"
-            android:layout_marginRight="5dp"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="45dip"
-            android:background="#FFC61717"
-            android:textColor="#ffffff"
-            android:textSize="35sp"
-            android:text="Cancel"
-            android:id="@+id/homeButton"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="10"/>
-    </LinearLayout>
+
 </LinearLayout>

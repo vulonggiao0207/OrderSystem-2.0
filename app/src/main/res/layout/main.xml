@@ -36,75 +36,74 @@
         android:layout_height="wrap_content"
         android:layout_weight="95"
         android:layout_gravity="center_horizontal">
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#FFC61717"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:textSize="40dp"
             android:text="Order"
-            android:id="@+id/orderButton" />
+            android:id="@+id/orderButton"
+            android:background="#fffff0" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#FFC61717"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:textSize="40dp"
             android:text="Menu"
-            android:id="@+id/menuButton" />
+            android:id="@+id/menuButton"
+            android:background="#fffff0" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#FFC61717"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:textSize="40dp"
             android:text="Pay and Move"
-            android:id="@+id/tableButton"/>
+            android:id="@+id/tableButton"
+            android:background="#fffff0" />
         <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#FFC61717"
-        android:textColor="#ffffff"
+            android:textColor="#000000"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:textSize="40dp"
         android:text="Setting"
-        android:id="@+id/settingButton"/>
+        android:id="@+id/settingButton"
+            android:background="#fffff0" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#FFC61717"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:textSize="40dp"
             android:text="Printer Setting"
-            android:id="@+id/printerSettingButton"/>
+            android:id="@+id/printerSettingButton"
+            android:background="#fffff0" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#FFC61717"
-            android:textColor="#ffffff"
+            android:textColor="#000000"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:textSize="40dp"
             android:text="Exit"
-            android:id="@+id/exitButton" />
+            android:id="@+id/exitButton"
+            android:background="#fffff0" />
     </LinearLayout>
 
     </LinearLayout>

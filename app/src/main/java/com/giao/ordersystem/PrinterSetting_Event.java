@@ -1,16 +1,15 @@
 package com.giao.ordersystem;
-
-import android.app.Activity;
-
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
+import com.zj.btsdk.BluetoothService;
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.widget.Toast;
-import com.zj.btsdk.*;
+import android.util.Log;
+
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -24,16 +23,14 @@ public class PrinterSetting_Event extends Activity {
     public static BluetoothService mService = null;//Bluetooth is open or not
     public static BluetoothDevice con_dev = null;//Is there any Bluetooth Devices connect to this device
     private static final int REQUEST_CONNECT_DEVICE = 1;
+    private final Context context;
 
-    Context context;
-    public PrinterSetting_Event()
-    {
 
-    }
     public PrinterSetting_Event(Context context)
     {
         this.context=context;
         // Create a new Bluetooth Service
+        mService = new BluetoothService(context, mHandler);
         CreateNewBTService();
     }
 
@@ -56,15 +53,15 @@ public class PrinterSetting_Event extends Activity {
     public void CreateNewBTService()
     {
         // Create a new Bluetooth Service
-        mService = new BluetoothService(context, mHandler);
+
         if( mService.isAvailable() == false ){
-            Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Bluetooth is not available", Toast.LENGTH_LONG).show();
             finish();
         }
     }
     public void checkBTTurnOn()
     {
-        if( mService.isBTopen() == false)
+        if( !mService.isBTopen())
         {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);//Intent of Turn-on Bluetooth
@@ -93,7 +90,7 @@ public class PrinterSetting_Event extends Activity {
                 case com.zj.btsdk.BluetoothService.MESSAGE_STATE_CHANGE:
                     switch (msg.arg1) {
                         case com.zj.btsdk.BluetoothService.STATE_CONNECTED:
-                            Toast.makeText(getApplicationContext(), "Connect successful",
+                            Toast.makeText(context, "Connect successful",
                                     Toast.LENGTH_SHORT).show();
                             //btnClose.setEnabled(true);
                             //btnSend.setEnabled(true);
@@ -108,13 +105,13 @@ public class PrinterSetting_Event extends Activity {
                     }
                     break;
                 case com.zj.btsdk.BluetoothService.MESSAGE_CONNECTION_LOST:
-                    Toast.makeText(getApplicationContext(), "Device connection was lost",
+                    Toast.makeText(context, "Device connection was lost",
                             Toast.LENGTH_SHORT).show();
                     //btnClose.setEnabled(false);
                     //btnSend.setEnabled(false);
                     break;
                 case com.zj.btsdk.BluetoothService.MESSAGE_UNABLE_CONNECT:
-                    Toast.makeText(getApplicationContext(), "Unable to connect to device",
+                    Toast.makeText(context, "Unable to connect to device",
                             Toast.LENGTH_SHORT).show();
                     break;
             }
@@ -130,7 +127,7 @@ public class PrinterSetting_Event extends Activity {
         switch (requestCode) {
             case REQUEST_ENABLE_BT:
                 if (resultCode == Activity.RESULT_OK) {
-                    Toast.makeText(this, "Bluetooth open successful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Bluetooth open successful", Toast.LENGTH_LONG).show();
                 } else {
                     finish();
                 }
@@ -180,8 +177,6 @@ public class PrinterSetting_Event extends Activity {
             if( msg.length() > 0 ){
                 mService.sendMessage(msg+"\n\n\n", "GBK");
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

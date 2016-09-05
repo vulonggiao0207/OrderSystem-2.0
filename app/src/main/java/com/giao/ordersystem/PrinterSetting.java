@@ -1,8 +1,6 @@
 package com.giao.ordersystem;
 import android.content.Intent;
-import com.zj.btsdk.BluetoothService;
-import com.zj.btsdk.PrintPic;
-import android.annotation.SuppressLint;
+//import com.zj.btsdk.BluetoothService;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -23,8 +21,11 @@ public class PrinterSetting extends Activity {
     Button btnClose;
     EditText edtContext;
     Button homeButton;
-    PrinterSetting_Event event;
-
+    //PrinterSetting_Event event= new PrinterSetting_Event(getApplicationContext());
+    private static final int REQUEST_ENABLE_BT = 2;
+    public static BluetoothService mService = null;
+    public static BluetoothDevice con_dev = null;
+    private static final int REQUEST_CONNECT_DEVICE = 1;
 
 
     /** Called when the activity is first created. */
@@ -32,18 +33,21 @@ public class PrinterSetting extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.printer_setting);
-        event= new PrinterSetting_Event(this.getApplicationContext());//errror is here
-        // Create a new Bluetooth Service
-        event.CreateNewBTService();
+        mService = new BluetoothService(this, mHandler);
+        if( mService.isAvailable() == false ){
+            Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        /*If the Bluetooth is not turned on
-        -->Require application to Turn-on Bluetooth
-        * */
-        event.checkBTTurnOn();
+        if( mService.isBTopen() == false)
+        {
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+        }
         try {
             btnSearch = (Button) this.findViewById(R.id.btnSearch);
             btnSearch.setOnClickListener(new ClickEvent());
@@ -52,8 +56,8 @@ public class PrinterSetting extends Activity {
             btnClose = (Button) this.findViewById(R.id.btnClose);
             btnClose.setOnClickListener(new ClickEvent());
             edtContext = (EditText) findViewById(R.id.txt_content);
-            //btnClose.setEnabled(false);
-            //btnSend.setEnabled(false);
+            btnClose.setEnabled(false);
+            btnSend.setEnabled(false);
             //homeButton ONCLICK event
             homeButton=(Button)findViewById(R.id.homeButton);
             homeButton.setOnClickListener(new View.OnClickListener() {
@@ -70,29 +74,85 @@ public class PrinterSetting extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //Stop and clear BT Service
- //       event.stopBTService();
+        //if (mService != null)
+            //mService.stop();
+        //mService = null;
     }
 
     class ClickEvent implements View.OnClickListener {
         public void onClick(View v) {
-            //Open the List of Bluetooth Devices
             if (v == btnSearch) {
-                //Intent of List of Bluetooth Device
-                event.btnSearch_onClick();
-            }
-            //Print from the selected bluetooth
-            else if (v == btnSend) {
-                event.btnSend_onClick(edtContext.getText().toString());
-            }
-            //Close the Bluetooth connection
-            else if (v == btnClose) {
-                event.btnClose_onClick();
+                Intent serverIntent = new Intent(PrinterSetting.this,DeviceList.class);
+                startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
+            } else if (v == btnSend) {
+                String msg = edtContext.getText().toString();
+                if( msg.length() > 0 ){
+                    mService.sendMessage(msg+"\n\n\n", "GBK");
+                }
+            } else if (v == btnClose) {
+                mService.stop();
             }
         }
     }
 
 
+    private final  Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case BluetoothService.MESSAGE_STATE_CHANGE:
+                    switch (msg.arg1) {
+                        case BluetoothService.STATE_CONNECTED:
+                            Toast.makeText(getApplicationContext(), "Connect successful",
+                                    Toast.LENGTH_SHORT).show();
+                            btnClose.setEnabled(true);
+                            btnSend.setEnabled(true);
+                            break;
+                        case BluetoothService.STATE_CONNECTING:
+                            Log.d("Error Debug","Connecting.....");
+                            break;
+                        case BluetoothService.STATE_LISTEN:
+                        case BluetoothService.STATE_NONE:
+                            Log.d("Error Debug","Waiting for connection.....");
+                            break;
+                    }
+                    break;
+                case BluetoothService.MESSAGE_CONNECTION_LOST:
+                    Toast.makeText(getApplicationContext(), "Device connection was lost",
+                            Toast.LENGTH_SHORT).show();
+                    btnClose.setEnabled(false);
+                    btnSend.setEnabled(false);
+                    break;
+                case BluetoothService.MESSAGE_UNABLE_CONNECT:
+                    Toast.makeText(getApplicationContext(), "Unable to connect device",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+
+    };
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_ENABLE_BT:
+                if (resultCode == Activity.RESULT_OK) {
+                    Toast.makeText(this, "Bluetooth open successful", Toast.LENGTH_LONG).show();
+                } else {
+                    finish();
+                }
+                break;
+            case  REQUEST_CONNECT_DEVICE:
+                if (resultCode == Activity.RESULT_OK) {
+                    String address = data.getExtras()
+                            .getString(DeviceList.EXTRA_DEVICE_ADDRESS);
+                    con_dev = mService.getDevByMac(address);
+
+                    mService.connect(con_dev);
+                }
+                break;
+        }
+    }
 
 }
 
