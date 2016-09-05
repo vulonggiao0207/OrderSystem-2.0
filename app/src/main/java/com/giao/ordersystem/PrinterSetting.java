@@ -11,10 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import android.util.Log;
-
-
 public class PrinterSetting extends Activity {
     Button btnSearch;
     Button btnSend;
@@ -56,8 +53,8 @@ public class PrinterSetting extends Activity {
             btnClose = (Button) this.findViewById(R.id.btnClose);
             btnClose.setOnClickListener(new ClickEvent());
             edtContext = (EditText) findViewById(R.id.txt_content);
-            btnClose.setEnabled(false);
-            btnSend.setEnabled(false);
+            //btnClose.setEnabled(false);
+            //btnSend.setEnabled(false);
             //homeButton ONCLICK event
             homeButton=(Button)findViewById(R.id.homeButton);
             homeButton.setOnClickListener(new View.OnClickListener() {
@@ -105,8 +102,8 @@ public class PrinterSetting extends Activity {
                         case BluetoothService.STATE_CONNECTED:
                             Toast.makeText(getApplicationContext(), "Connect successful",
                                     Toast.LENGTH_SHORT).show();
-                            btnClose.setEnabled(true);
-                            btnSend.setEnabled(true);
+                            //btnClose.setEnabled(true);
+                            //btnSend.setEnabled(true);
                             break;
                         case BluetoothService.STATE_CONNECTING:
                             Log.d("Error Debug","Connecting.....");
@@ -120,8 +117,8 @@ public class PrinterSetting extends Activity {
                 case BluetoothService.MESSAGE_CONNECTION_LOST:
                     Toast.makeText(getApplicationContext(), "Device connection was lost",
                             Toast.LENGTH_SHORT).show();
-                    btnClose.setEnabled(false);
-                    btnSend.setEnabled(false);
+                    //btnClose.setEnabled(false);
+                    //btnSend.setEnabled(false);
                     break;
                 case BluetoothService.MESSAGE_UNABLE_CONNECT:
                     Toast.makeText(getApplicationContext(), "Unable to connect device",

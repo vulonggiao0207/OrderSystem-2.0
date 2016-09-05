@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:textColor="#000000"
-            android:background="#b1cef4"
+            android:background="?android:attr/selectableItemBackground"
             android:text="Back"
             android:id="@+id/homeButton"
             android:layout_weight="10"/>
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:textColor="#000000"
-            android:background="#b1cef4"
+            android:background="?android:attr/selectableItemBackground"
             android:text="Save"
             android:id="@+id/saveDishButtonOK"
             android:layout_weight="10"/>
@@ -39,7 +39,7 @@
         android:layout_height="45dip"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textAlignment="center"
-        android:text="Add New Dish"
+        android:text="Dish Details"
         android:textStyle="bold"
         android:textSize="32sp"
         android:textColor="#b1cef4"

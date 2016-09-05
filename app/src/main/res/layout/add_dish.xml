@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:textColor="#000000"
-            android:background="#b1cef4"
+            android:background="?android:attr/selectableItemBackground"
             android:text="Back"
             android:id="@+id/homeButton"
             android:layout_weight="10"/>
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:textColor="#000000"
-            android:background="#b1cef4"
+            android:background="?android:attr/selectableItemBackground"
             android:text="Save"
             android:id="@+id/addDishButtonOK"
             android:layout_weight="10"/>
