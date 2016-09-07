@@ -3,16 +3,21 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="5dip"
+    android:padding="1dip"
     android:weightSum="100">
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/Table_Pay_ChangeTextView"
         android:layout_weight="80"
+        android:paddingLeft="10dp"
         android:singleLine="true"
         android:textColor="#000000"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:text="abcde"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        android:background="?android:attr/selectableItemBackground"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -21,7 +26,8 @@
         android:text="Pay"
         android:id="@+id/Table_PayButton"
         android:layout_weight="10"
-        android:contentDescription="TableName" />
+        android:contentDescription="TableName"
+        android:background="?android:attr/selectableItemBackground"/>
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -29,5 +35,6 @@
         android:text="Move"
         android:id="@+id/Table_ChangeButton"
         android:layout_weight="10"
-        android:contentDescription="TableName" />
+        android:contentDescription="TableName"
+        android:background="?android:attr/selectableItemBackground"/>
 </LinearLayout>

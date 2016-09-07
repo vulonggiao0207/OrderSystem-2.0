@@ -2,14 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:weightSum="100">
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="85"
-        android:weightSum="100"
-        android:orientation="horizontal">
+    >
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="100">
+        <TableRow>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="90">
+            <TableRow android:paddingTop="5dp">
         <TextView
             android:layout_width="1dp"
             android:layout_height="1dp"
@@ -27,13 +30,14 @@
         android:textColor="#000000"
         android:inputType="text"
         android:layout_weight="10"
-        android:paddingLeft="10dp"/>
+        android:paddingLeft="5dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/dishNameTextView"
             android:singleLine="true"
             android:textColor="#000000"
+            android:paddingLeft="5dp"
             android:layout_weight="70"/>
         <TextView
             android:layout_width="wrap_content"
@@ -42,27 +46,38 @@
             android:singleLine="true"
             android:layout_toLeftOf="@+id/OrderViewDeleteButton"
             android:textColor="#000000"
+            android:paddingLeft="5dp"
             android:layout_weight="10"/>
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            android:id="@+id/OrderViewDeleteButton"
-            android:layout_weight="10"/>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="15"
-        android:orientation="horizontal">
-        <TextView
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_span="5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/noteTextView"
             android:inputType="textMultiLine"
             android:textColor="#FF0000"
             android:paddingLeft="10dp"/>
-    </LinearLayout>
+        </TableRow>
+    </TableLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10">
+        <TableRow>
+            <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:id="@+id/OrderViewDeleteButton"
+            android:layout_weight="10"/>
+        </TableRow>
+    </TableLayout>
+
+        </TableRow>
+    </TableLayout>
+
+
 </LinearLayout>

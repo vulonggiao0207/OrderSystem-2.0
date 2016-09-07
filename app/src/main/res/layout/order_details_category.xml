@@ -46,8 +46,9 @@
         android:textSize="32sp"
         android:textColor="#b1cef4"
         android:background="#ffffff"
-        android:id="@+id/SelectecItemtextView"
+        android:id="@+id/tableNameTextView"
         android:layout_weight="10"/>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

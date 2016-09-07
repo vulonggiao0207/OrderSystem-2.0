@@ -1,36 +1,58 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:padding="0dp"
     tools:context="com.giao.OrderSystem.Setting"
-    >
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="100"
-        android:background="#b1cef4">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    android:background="#b1cef4">
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:background="#3f51B5">
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:textColor="#000000"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Back"
+                android:id="@+id/homeButton"
+                android:layout_weight="10"/>
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="70dip"
-                android:paddingTop="@dimen/activity_horizontal_margin"
+                android:layout_height="45dip"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textAlignment="center"
-                android:text="Move table"
                 android:textStyle="bold"
                 android:textSize="32sp"
                 android:textColor="#ffffff"
-                android:id="@+id/textView"
-                android:background="#3f51B5"/>
+                android:id="@+id/textViewtemp"
+                android:layout_weight="10"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:textColor="#000000"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Save"
+                android:id="@+id/saveButton"
+                android:layout_weight="10"/>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
+            android:text="Move Table"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:textColor="#b1cef4"
+            android:id="@+id/textView"
+            android:background="#ffffff"
+            android:layout_weight="10"/>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -80,36 +102,4 @@
                 </TableRow>
             </TableLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dip"
-            android:gravity="center_horizontal"
-            android:layout_weight="10" >
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TableRow>
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#FFC61717"
-                        android:textColor="#ffffff"
-                        android:textSize="35sp"
-                        android:text="Save"
-                        android:id="@+id/saveButton"
-                        android:layout_weight="5"/>
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:background="#FFC61717"
-                        android:textColor="#ffffff"
-                        android:textSize="35sp"
-                        android:text="Home"
-                        android:id="@+id/homeButton"
-                        android:layout_weight="5" />
-                </TableRow>
-            </TableLayout>
-        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>

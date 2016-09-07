@@ -69,11 +69,16 @@ public class Table_PayandMove_Adapter  extends BaseAdapter {
         final String orderID=orderDAO.checkTableAvailable(temp.getTableName());
         if(orderID!="") {
             mText.setBackgroundColor(Color.GREEN);
+            changeButton.setBackgroundColor(Color.GREEN);
+            payButton.setBackgroundColor(Color.GREEN);
+
             changeButton.setEnabled(true);
             payButton.setEnabled(true);
         }
         else {
-            mText.setBackgroundColor(Color.RED);
+            mText.setBackgroundColor(Color.GRAY);
+            changeButton.setBackgroundColor(Color.GRAY);
+            payButton.setBackgroundColor(Color.GRAY);
             changeButton.setEnabled(false);
             payButton.setEnabled(false);
         }
