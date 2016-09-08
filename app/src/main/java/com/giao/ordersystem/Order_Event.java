@@ -8,6 +8,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -85,8 +87,12 @@ public class Order_Event extends Activity {
             OrderBO orderBO=orderDAO.itemOrder(Integer.toString(orderID));
             orderDAO.close();
             //and print it out
-            PrinterSetting_Event printer_event= new PrinterSetting_Event(context);
-            printer_event.btnSend_onClick(tableName,order_viewArrayList,orderBO);
+            //PrinterSetting_Event printer_event= new PrinterSetting_Event(context);
+            //printer_event.btnSend_onClick(tableName,order_viewArrayList,orderBO);
+            PrinterSetting printerSetting= new PrinterSetting();
+            String orderprinted=printOrder(tableName,order_viewArrayList,orderBO);
+            printerSetting.mService.sendMessage(orderprinted, "GBK");
+            Toast.makeText(context, "Order is printed", Toast.LENGTH_LONG).show();
 
         }
         catch (Exception e)
@@ -103,6 +109,48 @@ public class Order_Event extends Activity {
         orderDetailsDAO.close();
         list.setAdapter(orderViewAdapter);
 
+    }
+
+    public String printOrder(String tableName,ArrayList<Order_View> orderList,OrderBO orderBO) throws IOException
+    {
+
+        String msg="";
+        try {
+            //String msg="";
+            if(tableName.equals("")) {
+                // the text typed by the user
+                //msg = myTextbox.getText().toString();
+                return null;
+            }
+            else
+            {
+                Float total=0.0f;
+                msg="================================\n"+"Table: "+tableName +"\n";
+                msg+=orderBO.getOrderDate()+"\n";
+                msg+="Guest: "+orderBO.getNumberOfCustomer()+"\n";
+                msg+="Comment: "+orderBO.getOrderNote()+"\n";
+                msg+="================================\n";
+                for(int i=0;i<orderList.size();i++)
+                {
+                    Order_View temp=(Order_View)orderList.get(i);
+                    msg +=Integer.toString(temp.getQuantity())+" x ";
+                    msg +=temp.getdishName();
+                    msg +="\n                        $"+Float.toString(temp.getSubtotal())+" \n";
+                    if(!(temp.getNote().trim()).equals(""))
+                        msg +="["+temp.getNote()+"]\n";
+                    total=total+temp.getSubtotal();
+                }
+                msg+="================================\n";
+                msg+="Total: "+new DecimalFormat(".##").format(total);
+                msg+="\n================================\n\n\n\n" ;
+
+            }
+            return msg+"\n\n";
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
 

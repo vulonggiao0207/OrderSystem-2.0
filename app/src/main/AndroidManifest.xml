@@ -11,8 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
          <service android:enabled="true"
-             android:name=".BluetoothService"
-             android:exported="false">
+             android:name=".BluetoothService">
          </service>
         <activity
             android:launchMode="singleTask"
@@ -126,7 +125,8 @@
     </activity>
         <activity
             android:name=".PrinterSetting"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode = "singleInstance" >
             <intent-filter>
                 <action android:name="com.giao.ordersystem.PrinterSetting" />
                 <category android:name="android.intent.category.DEFAULT" />

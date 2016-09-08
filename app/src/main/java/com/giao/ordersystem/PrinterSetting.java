@@ -20,6 +20,7 @@ public class PrinterSetting extends Activity {
     Button homeButton;
     //PrinterSetting_Event event= new PrinterSetting_Event(getApplicationContext());
     private static final int REQUEST_ENABLE_BT = 2;
+    private static boolean flag=false;
     public static BluetoothService mService = null;
     public static BluetoothDevice con_dev = null;
     private static final int REQUEST_CONNECT_DEVICE = 1;
@@ -30,11 +31,16 @@ public class PrinterSetting extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.printer_setting);
-        mService = new BluetoothService(this, mHandler);
-        if( mService.isAvailable() == false ){
-            Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
-            finish();
+        //Create everytime the Activity started
+        if(flag==false) {
+            flag=true;
+            mService = new BluetoothService(this, mHandler);
+            if (mService.isAvailable() == false) {
+                Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+                finish();
+            }
         }
+
     }
 
     @Override
