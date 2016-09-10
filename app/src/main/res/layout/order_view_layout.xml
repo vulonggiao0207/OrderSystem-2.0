@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    >
+    android:orientation="horizontal"
+    android:padding="1dip"
+    android:weightSum="100">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,7 +13,7 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="90">
+            android:layout_weight="1">
             <TableRow android:paddingTop="5dp">
         <TextView
             android:layout_width="1dp"
@@ -30,7 +32,8 @@
         android:textColor="#000000"
         android:inputType="text"
         android:layout_weight="10"
-        android:paddingLeft="5dp"/>
+        android:paddingLeft="5dp"
+        android:layout_gravity="left" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +41,8 @@
             android:singleLine="true"
             android:textColor="#000000"
             android:paddingLeft="5dp"
-            android:layout_weight="70"/>
+            android:layout_weight="70"
+            android:layout_gravity="right" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,13 +51,14 @@
             android:layout_toLeftOf="@+id/OrderViewDeleteButton"
             android:textColor="#000000"
             android:paddingLeft="5dp"
-            android:layout_weight="10"/>
+            android:layout_weight="10"
+            android:layout_gravity="left|right" />
 
         </TableRow>
         <TableRow>
             <TextView
-                android:layout_span="5"
-            android:layout_width="match_parent"
+            android:layout_span="5"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/noteTextView"
             android:inputType="textMultiLine"
@@ -63,8 +68,7 @@
     </TableLayout>
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="10">
+        android:layout_height="match_parent">
         <TableRow>
             <Button
             style="?android:attr/buttonStyleSmall"
@@ -72,7 +76,9 @@
             android:layout_height="wrap_content"
             android:text="Delete"
             android:id="@+id/OrderViewDeleteButton"
-            android:layout_weight="10"/>
+            android:backgroundTint="#585858"
+            android:textColor="#ffffff"
+            />
         </TableRow>
     </TableLayout>
 

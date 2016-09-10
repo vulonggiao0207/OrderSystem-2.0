@@ -25,7 +25,6 @@ public class DishAdapter extends BaseAdapter {
     private DishDAO dishDAO;
     public DishAdapter(Context context, ArrayList<DishBO> data) {
         // TODO Auto-generated constructor stub
-        View focusTarget = null;
         this.context = context;
         this.data = new ArrayList<DishBO>(data);
         dishDAO= new DishDAO(context);

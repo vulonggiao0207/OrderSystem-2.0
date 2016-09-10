@@ -116,7 +116,6 @@ public class Order_Event extends Activity {
 
         String msg="";
         try {
-            //String msg="";
             if(tableName.equals("")) {
                 // the text typed by the user
                 //msg = myTextbox.getText().toString();
@@ -125,7 +124,7 @@ public class Order_Event extends Activity {
             else
             {
                 Float total=0.0f;
-                msg="================================\n"+"Table: "+tableName +"\n";
+                msg="\n\n================================\n"+"Table: "+tableName +"\n";
                 msg+=orderBO.getOrderDate()+"\n";
                 msg+="Guest: "+orderBO.getNumberOfCustomer()+"\n";
                 msg+="Comment: "+orderBO.getOrderNote()+"\n";
@@ -141,7 +140,7 @@ public class Order_Event extends Activity {
                     total=total+temp.getSubtotal();
                 }
                 msg+="================================\n";
-                msg+="Total: "+new DecimalFormat(".##").format(total);
+                msg+="Total: $"+new DecimalFormat(".##").format(total);
                 msg+="\n================================\n\n\n\n" ;
 
             }

@@ -9,7 +9,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:background="?android:attr/selectableItemBackground"
             android:text="Back"
             android:id="@+id/homeButton"
@@ -46,21 +46,24 @@
         android:textColor="#b1cef4"
         android:background="#ffffff"
         android:id="@+id/SelectecItemtextView"
-        android:layout_weight="10"/>
+       />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="80"
+        android:layout_weight="100"
         android:gravity="center_horizontal"
         android:background="#FFFFFF"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:padding="@dimen/activity_horizontal_margin">
         <Button
             android:id="@+id/btnSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#b1cef4"
+            android:textColor="#ffffff"
             android:text="@string/btnSearch" >
         </Button>
         <EditText
@@ -75,6 +78,8 @@
             android:id="@+id/btnSend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#b1cef4"
+            android:textColor="#ffffff"
             android:text="@string/btnSend" >
 
         </Button>
@@ -82,6 +87,8 @@
             android:id="@+id/btnClose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#b1cef4"
+            android:textColor="#ffffff"
             android:text="@string/btnClose" >
         </Button>
     </LinearLayout>

@@ -18,7 +18,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="45dip"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:background="?android:attr/selectableItemBackground"
                 android:text="Back"
                 android:id="@+id/homeButton"
@@ -36,7 +36,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="45dip"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:background="?android:attr/selectableItemBackground"
                 android:text="Save"
                 android:id="@+id/saveButton"
@@ -52,14 +52,13 @@
             android:textSize="32sp"
             android:textColor="#b1cef4"
             android:id="@+id/textView"
-            android:background="#ffffff"
-            android:layout_weight="10"/>
+            android:background="#ffffff"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="80"
+            android:layout_weight="100"
             android:gravity="center_horizontal"
             android:weightSum="100">
             <LinearLayout
@@ -73,12 +72,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:background="#C0C0C0"
+                    android:background="#b1cef4"
                     android:layout_weight="20"
                     android:weightSum="100"
                     android:paddingLeft="5dp">
                         <EditText
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:id="@+id/tableNameEditText"
                             android:paddingLeft="5dp"
@@ -94,6 +93,9 @@
                             android:layout_height="match_parent"
                             android:text="Add"
                             android:id="@+id/addTableButton"
+                            android:backgroundTint="#b1cef4"
+                            android:textColor="#ffffff"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="5"/>
                  </LinearLayout>
                 <LinearLayout
@@ -123,7 +125,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:background="#C0C0C0"
+                    android:background="#b1cef4"
                     android:layout_weight="20"
                     android:paddingLeft="5dp"
                     android:weightSum="100">
@@ -143,7 +145,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="Add"
+                            android:backgroundTint="#b1cef4"
+                            android:textColor="#ffffff"
                             android:id="@+id/addCategoryButton"
+                            android:background="?android:attr/selectableItemBackground"
                             android:layout_weight="5"/>
                    </LinearLayout>
                 <LinearLayout

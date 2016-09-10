@@ -9,7 +9,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:background="?android:attr/selectableItemBackground"
             android:text="Back"
             android:id="@+id/homeButton"
@@ -45,14 +45,13 @@
         android:textSize="32sp"
         android:textColor="#b1cef4"
         android:background="#ffffff"
-        android:id="@+id/textView"
-        android:layout_weight="10"/>
+        android:id="@+id/textView"/>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/tableOrderListView"
             android:background="#ffffff"
-            android:layout_weight="80"
+            android:layout_weight="100"
             android:isScrollContainer="false"/>
     <LinearLayout
         android:layout_width="match_parent"

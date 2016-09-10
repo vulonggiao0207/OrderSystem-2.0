@@ -9,26 +9,27 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:background="?android:attr/selectableItemBackground"
             android:text="Back"
             android:id="@+id/homeButton"
             android:layout_weight="10"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:background="?android:attr/selectableItemBackground"
-            android:text="Save"
-            android:id="@+id/orderInfoOK"
+            android:text="Delete"
+            android:id="@+id/orderInfoDELETE"
             android:layout_weight="10"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:background="?android:attr/selectableItemBackground"
-            android:text="Delete"
-            android:id="@+id/orderInfoDELETE"
+            android:text="Save"
+            android:id="@+id/orderInfoOK"
             android:layout_weight="10"/>
 
     </LinearLayout>

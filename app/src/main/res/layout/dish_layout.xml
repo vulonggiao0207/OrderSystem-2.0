@@ -3,33 +3,29 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:padding="1dip"
     android:weightSum="100">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:id="@+id/EditDishEditText"
-        android:layout_weight="80"
         android:layout_toLeftOf="@+id/EditDishButton"
         android:singleLine="true"
         android:textColor="#000000"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:layout_weight="100" />
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Detail"
-        android:id="@+id/DetailDishButton"
-        android:layout_weight="10"
-        android:layout_toLeftOf="@+id/DeleteDishEditText"
-        android:contentDescription="TableName" />
+        android:id="@+id/DetailDishButton"/>
     <Button
     style="?android:attr/buttonStyleSmall"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Delete"
     android:id="@+id/DeleteDishButton"
-    android:layout_weight="10"
-    android:layout_alignBottom="@+id/EditDishEditText"
-    android:contentDescription="TableName" />
+    />
 </LinearLayout>

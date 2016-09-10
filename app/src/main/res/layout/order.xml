@@ -9,7 +9,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:background="?android:attr/selectableItemBackground"
             android:text="Back"
             android:id="@+id/homeButton"
@@ -27,7 +27,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:background="?android:attr/selectableItemBackground"
             android:text="Send"
             android:id="@+id/saveButton"
@@ -44,21 +44,21 @@
         android:textColor="#b1cef4"
         android:background="#ffffff"
         android:id="@+id/SelectecItemtextView"
-        android:layout_weight="10"/>
+        />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="80"
+        android:layout_weight="100"
         android:gravity="center_horizontal"
         android:weightSum="100">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dip"
-                android:layout_weight="15">
+                android:layout_weight="5">
             <Spinner
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/tableSpinner"
                 android:textColor="#000000"
@@ -70,7 +70,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:background="?android:attr/selectableItemBackground"
                     android:text="Order"
                     android:id="@+id/orderButton"
@@ -88,17 +88,18 @@
                 android:paddingLeft="8dp"
                 android:id="@+id/totalTextView"
                 android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:gravity="center_vertical"/>
         </LinearLayout>
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/orderListView"
-                android:background="#ffffff"
-                android:layout_weight="65"
-                android:isScrollContainer="false"
-                android:divider="#b5b5b5"
-                android:dividerHeight="1dp"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/orderListView"
+            android:background="#ffffff"
+            android:layout_weight="65"
+            android:isScrollContainer="false"
+            android:divider="#b5b5b5"
+            android:dividerHeight="1dp"/>
         </LinearLayout>
 
 

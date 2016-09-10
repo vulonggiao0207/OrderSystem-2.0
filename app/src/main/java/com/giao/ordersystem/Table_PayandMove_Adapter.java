@@ -71,14 +71,13 @@ public class Table_PayandMove_Adapter  extends BaseAdapter {
             mText.setBackgroundColor(Color.GREEN);
             changeButton.setBackgroundColor(Color.GREEN);
             payButton.setBackgroundColor(Color.GREEN);
-
             changeButton.setEnabled(true);
             payButton.setEnabled(true);
         }
         else {
-            mText.setBackgroundColor(Color.GRAY);
-            changeButton.setBackgroundColor(Color.GRAY);
-            payButton.setBackgroundColor(Color.GRAY);
+            mText.setBackgroundColor(Color.rgb(58,58,58));
+            changeButton.setBackgroundColor(Color.rgb(58,58,58));
+            payButton.setBackgroundColor(Color.rgb(58,58,58));
             changeButton.setEnabled(false);
             payButton.setEnabled(false);
         }
