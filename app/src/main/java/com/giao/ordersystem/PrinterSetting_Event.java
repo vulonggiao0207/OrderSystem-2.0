@@ -163,7 +163,7 @@ public class PrinterSetting_Event extends Activity {
                 for(int i=0;i<orderList.size();i++)
                 {
                     Order_View temp=(Order_View)orderList.get(i);
-                    msg +=Integer.toString(temp.getQuantity())+"";
+                    msg +=Float.toString(temp.getQuantity())+"";
                     msg +=temp.getdishName()+" \n";
                     msg +=Float.toString(temp.getSubtotal())+" \n";
                     msg +=temp.getNote()+"\n";

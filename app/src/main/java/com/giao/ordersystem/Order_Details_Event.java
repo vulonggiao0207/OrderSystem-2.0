@@ -32,8 +32,8 @@ public class Order_Details_Event extends Activity {
         try {
             int _orderID = Integer.parseInt(orderID);
             int _dishID = Integer.parseInt(dishID);
-            int _quantity = 0;
-            try{_quantity=Integer.parseInt(quantity);}catch(Exception e){_quantity=0;}
+            Float _quantity = Float.parseFloat("0");
+            try{_quantity=Float.parseFloat(quantity);}catch(Exception e){_quantity=Float.parseFloat("0");}
             Float _price=Float.parseFloat("0");
             try{_price=Float.parseFloat(price);}catch(Exception e){_price=Float.parseFloat("0");}
             String _note = note;

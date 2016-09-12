@@ -5,12 +5,12 @@ package com.giao.ordersystem;
  */
 public class Order_View {
     private int orderDetailID;
-    private int quantity;
+    private Float quantity;
     private int dishID;
     private String dishName;
     private Float subtotal;
     private String note;
-    public Order_View(int orderDetailID,int dishID,int quantity,String dishName,Float subtotal,String note)
+    public Order_View(int orderDetailID,int dishID,Float quantity,String dishName,Float subtotal,String note)
     {
         this.orderDetailID=orderDetailID;
         this.dishID=dishID;
@@ -23,8 +23,8 @@ public class Order_View {
     public int getOrderDetailID(){return this.orderDetailID;}
     public void setDishID(int dishID){this.dishID=dishID;}
     public int getDishID(){return this.dishID;}
-    public void setQuantity(int quantity){this.quantity=quantity;}
-    public int getQuantity(){return this.quantity;}
+    public void setQuantity(Float quantity){this.quantity=quantity;}
+    public Float getQuantity(){return this.quantity;}
     public void setdishName(String dishName){this.dishName=dishName;}
     public String getdishName(){return this.dishName;}
     public void setSubtotal(Float subtotal){this.subtotal=subtotal;}

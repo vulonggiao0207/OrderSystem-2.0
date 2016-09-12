@@ -77,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CreateTABLE_ORDERDETAIL="CREATE TABLE IF NOT EXISTS "+TABLE_ORDERDETAIL+" ("+OrderDetailID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + OrderDetail_OrderID+ " INTEGER NOT NULL, "
                 + OrderDetail_DishID+ " INTEGER NOT NULL, "
-                + OrderDetails_Quantity+ " INTEGER NOT NULL, "
+                + OrderDetails_Quantity+ " REAL NOT NULL, "
                 + Price+ " REAL, "
                 + Note+ " TEXT NOT NULL "
                 +");";

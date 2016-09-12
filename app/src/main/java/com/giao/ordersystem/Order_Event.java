@@ -74,7 +74,7 @@ public class Order_Event extends Activity {
                 {
                     Order_View temp= (Order_View)order_viewArrayList.get(i);
                     int dishID=temp.getDishID();
-                    int quantity=temp.getQuantity();
+                    Float quantity=temp.getQuantity();
                     Float price= temp.getSubtotal()/temp.getQuantity();
                     String note=temp.getNote();
                     orderDetailsDAO.create(orderID,dishID,quantity,price,note);
@@ -132,7 +132,7 @@ public class Order_Event extends Activity {
                 for(int i=0;i<orderList.size();i++)
                 {
                     Order_View temp=(Order_View)orderList.get(i);
-                    msg +=Integer.toString(temp.getQuantity())+" x ";
+                    msg +=Float.toString(temp.getQuantity())+" x ";
                     msg +=temp.getdishName();
                     msg +="\n                        $"+Float.toString(temp.getSubtotal())+" \n";
                     if(!(temp.getNote().trim()).equals(""))

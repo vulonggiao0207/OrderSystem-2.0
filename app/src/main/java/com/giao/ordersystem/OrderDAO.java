@@ -4,6 +4,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.widget.Toast;
+
 import java.util.List;
 import java.util.ArrayList;
 /**
@@ -58,13 +60,16 @@ public class OrderDAO {
     public String checkTableAvailable(String tableName)
     {
         String query = "SELECT orderID FROM Orders WHERE tableName= '"+tableName+"'";
-        query+=" AND (OrderID NOT IN(SELECT OrderID FROM OrderDetail)";
-        query+=" OR orderpaid< (SELECT SUM(round(quantity*price,2)) FROM orderdetail,menu,tables,orders";
-        query+=" WHERE orderdetail.dishid=menu.dishid";
-        query+=" AND orders.tablename=tables.tablename";
-        query+=" AND orders.orderid=orderdetail.orderid";
-        query+=" AND orders.tablename='"+tableName+"')";
-        query+=")";
+        query+=" AND";
+        query+=" (OrderID NOT IN(SELECT OrderID FROM OrderDetail)";
+        query+=" OR";
+        query+=" orderID IN (SELECT Orders.OrderID";
+        query+=" FROM Orders,Tables,OrderDetail";
+        query+=" WHERE Orders.tableName=Tables.tableName";
+        query+=" AND Orders.OrderID=OrderDetail.OrderID";
+        query+=" AND Tables.TableName= '"+tableName+"'";
+        query+=" GROUP BY orderpaid,Orders.OrderID";
+        query+=" HAVING Orders.OrderPaid<Sum(quantity*price)))";
         Cursor cur = database.rawQuery(query, null);
         String record="";
         for (cur.moveToFirst(); !cur.isAfterLast(); cur.moveToNext()) {
@@ -130,13 +135,13 @@ public class OrderDAO {
     public String getUnpaidOrder(String tableName)
     {
         String orderID="";
-        String query = "SELECT Orders.OrderID ";
+        String query = "SELECT Orders.OrderID, Sum(quantity*price) ";
         query +=" FROM Orders,Tables,OrderDetail";
         query +=" WHERE Orders.tableName=Tables.tableName";
         query +=" AND Orders.OrderID=OrderDetail.OrderID";
         query +=" AND Tables.TableName='"+tableName+"'";
-        query +=" GROUP BY 1";
-        query +=" HAVING Orders.OrderPaid<(SELECT SUM(quantity*price) FROM OrderDetail)";
+        query +=" GROUP BY orderpaid,Orders.OrderID";
+        query +=" HAVING Orders.OrderPaid<Sum(quantity*price)";
         Cursor cur = database.rawQuery(query, null);
         List<OrderBO> list = new ArrayList<OrderBO>();
         for (cur.moveToFirst(); !cur.isAfterLast(); cur.moveToNext()) {
@@ -148,47 +153,54 @@ public class OrderDAO {
     }
     public String getTotalAmount(String tableName)
     {
-        String orderID="";
+        String total="";
         String query = "SELECT SUM(quantity*price)  as Total ,Tables.TableName";
         query +=" FROM Orders,Tables,OrderDetail";
         query +=" WHERE Orders.tableName=Tables.tableName";
         query +=" AND Orders.OrderID=OrderDetail.OrderID";
         query +=" AND Tables.TableName='"+tableName+"'";
-        query +=" GROUP BY Tables.TableName";
-        query +=" HAVING Orders.OrderPaid<(SELECT SUM(quantity*price) FROM OrderDetail)";
+        query +=" GROUP BY Tables.TableName,Orders.OrderID";
+        query +=" HAVING Orders.OrderPaid<Sum(quantity*price)";
         Cursor cur = database.rawQuery(query, null);
         List<OrderBO> list = new ArrayList<OrderBO>();
         for (cur.moveToFirst(); !cur.isAfterLast(); cur.moveToNext()) {
-            orderID=cur.getString(0).toString();
+            total=cur.getString(0).toString();
             break;
         }
         cur.close();
-        return orderID;
+        return total;
     }
     public String getPaidAmount(String tableName)
     {
-        String orderID="";
+        String PaidAmount="";
         String query = "SELECT OrderPaid ";
         query +=" FROM Orders,Tables,OrderDetail";
         query +=" WHERE Orders.tableName=Tables.tableName";
         query +=" AND Orders.OrderID=OrderDetail.OrderID";
         query +=" AND Tables.TableName='"+tableName+"'";
         query +=" GROUP BY 1";
-        query +=" HAVING Orders.OrderPaid<(SELECT SUM(quantity*price) FROM OrderDetail)";
+        query +=" HAVING Orders.OrderPaid<Sum(quantity*price)";
         Cursor cur = database.rawQuery(query, null);
         List<OrderBO> list = new ArrayList<OrderBO>();
         for (cur.moveToFirst(); !cur.isAfterLast(); cur.moveToNext()) {
-            orderID=cur.getString(0).toString();
+            PaidAmount=cur.getString(0).toString();
             break;
         }
         cur.close();
-        return orderID;
+        return PaidAmount;
     }
     public long updateOrderPaid(int orderID,Float payment)
     {
-        ContentValues cv = new ContentValues();
-        cv.put(ORDER_PAID,payment);
-        return database.update(DATABASE_TABLE, cv, KEY_ROWID + "=?", new String[]{Integer.toString(orderID)});
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put(ORDER_PAID, payment);
+            return database.update(DATABASE_TABLE, cv, KEY_ROWID + "=?", new String[]{Integer.toString(orderID)});
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(context, "Failed to update data", Toast.LENGTH_LONG).show();
+            return 0;
+        }
     }
 
 }

@@ -67,7 +67,8 @@ public class Table_PayandMove_Adapter  extends BaseAdapter {
         //change table name: green if available/ red if unavailable
         orderDAO.open();
         final String orderID=orderDAO.checkTableAvailable(temp.getTableName());
-        if(orderID!="") {
+        if(orderID!="") //If orderID IS NOT NULL --> This Table is NOT AVAILABLE
+        {
             mText.setBackgroundColor(Color.GREEN);
             changeButton.setBackgroundColor(Color.GREEN);
             payButton.setBackgroundColor(Color.GREEN);

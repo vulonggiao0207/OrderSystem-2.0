@@ -85,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/quantityEditText"
+                android:text="0"
                 android:layout_weight="90"/>
 
         </TableRow>
@@ -101,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/priceEditText"
+                android:text="0.0"
                 android:layout_weight="90"/>
 
         </TableRow>

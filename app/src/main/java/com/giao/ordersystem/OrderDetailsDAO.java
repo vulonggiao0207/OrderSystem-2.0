@@ -38,7 +38,7 @@ public class OrderDetailsDAO {
     {
         databaseHelper.close();
     }
-    public long create(int orderID, int dishID, int quantity, Float price, String note) throws SQLException
+    public long create(int orderID, int dishID, Float quantity, Float price, String note) throws SQLException
     {
         ContentValues cv= new ContentValues();
         cv.put(OrderDetail_OrderID, orderID);
@@ -58,7 +58,7 @@ public class OrderDetailsDAO {
             int _OrderDetailID=Integer.parseInt(cur.getString(0).toString());
             int _OrderID=Integer.parseInt(cur.getString(1).toString());
             int _DishID=Integer.parseInt(cur.getString(2).toString());
-            int _Quantity=Integer.parseInt(cur.getString(3).toString());
+            Float _Quantity=Float.parseFloat(cur.getString(3).toString());
             Float _Price=Float.parseFloat(cur.getString(4).toString());
             String _Note=cur.getString(5).toString();
             OrderDetailsBO record = new OrderDetailsBO(_OrderDetailID, _OrderID,_DishID,_Quantity,_Price,_Note);
@@ -74,19 +74,23 @@ public class OrderDetailsDAO {
         query+=" AND orders.tablename=tables.tablename";
         query+=" AND orders.orderid=orderdetail.orderid";
         query+=" AND orders.tablename='"+tableName+"'";
-        query+=" GROUP BY orderDetailID,menu.dishID,quantity,dishname,subtotal,note";
-        query+=" HAVING orderpaid<(SELECT ROUND(SUM(quantity*price),2) FROM orderdetail,menu,tables,orders";
-        query+=" WHERE orderdetail.dishid=menu.dishid";
-        query+=" AND orders.tablename=tables.tablename";
-        query+=" AND orders.orderid=orderdetail.orderid";
-        query+=" AND orders.tablename='"+tableName+"')";
+        query+=" AND ";
+        query+=" (orders.OrderID NOT IN(SELECT OrderID FROM OrderDetail)";
+        query+=" OR";
+        query+=" orders.orderID IN (SELECT Orders.OrderID";
+        query+=" FROM Orders,Tables,OrderDetail";
+        query+=" WHERE Orders.tableName=Tables.tableName";
+        query+=" AND Orders.OrderID=OrderDetail.OrderID";
+        query+=" AND Tables.TableName='"+tableName+"'";
+        query+=" GROUP BY orderpaid,Orders.OrderID";
+        query+=" HAVING Orders.OrderPaid<Sum(quantity*price)))";
         Cursor cur=database.rawQuery(query,null);
         ArrayList<Order_View> list = new ArrayList<Order_View>();
         int iRow= cur.getColumnIndex(KEY_OrderDetailID);
         for(cur.moveToFirst();!cur.isAfterLast();cur.moveToNext()) {
             int orderDetailID=Integer.parseInt(cur.getString(0).toString());
             int dishID=Integer.parseInt(cur.getString(1).toString());
-            int quantity=Integer.parseInt(cur.getString(2).toString());
+            Float quantity=Float.parseFloat(cur.getString(2).toString());
             String dishname=cur.getString(3);
             Float subtotal=Float.parseFloat(cur.getString(4));
             String note=cur.getString(5);

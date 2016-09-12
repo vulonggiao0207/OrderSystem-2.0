@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -23,6 +24,7 @@ public class Table_Pay extends Activity {
     private static TextView totalTextView;
     private static TextView paidTextView;
     private static TextView remainingTextView;
+    private static TextView refundTextView;
     public static EditText payEditText;
     private int orderID;
     private String tableName;
@@ -46,6 +48,7 @@ public class Table_Pay extends Activity {
         totalTextView = (TextView) findViewById(R.id.totalTextView);
         paidTextView = (TextView) findViewById(R.id.paidTextView);
         remainingTextView = (TextView) findViewById(R.id.remainingTextView);
+        refundTextView=(TextView)findViewById(R.id.refundTextView);
         payEditText=(EditText)findViewById(R.id.payEditText);
         //load data to controls
         loadDataToControls();
@@ -55,8 +58,18 @@ public class Table_Pay extends Activity {
             public void onClick(View v) {
                 Float currentPayment = Float.parseFloat(payEditText.getText().toString());
                 Float totalPayment = currentPayment + Float.parseFloat(paidTextView.getText().toString());
+                Float remainingPayment=Float.parseFloat(remainingTextView.getText().toString());
                 event.payTable(tableName, totalPayment);
                 //Reload data to Controls
+                Float refund=remainingPayment-currentPayment;
+                if(refund<0) {
+                    refundTextView.setText(Float.toString(refund).substring(1));
+                    saveButton.setEnabled(false);
+                }
+                else
+                {
+                    saveButton.setEnabled(true);
+                }
                 loadDataToControls();
             }
         });
@@ -76,8 +89,19 @@ public class Table_Pay extends Activity {
         tableNameTextView.setText(tableName.toString());
         totalTextView.setText(Float.toString(total));
         paidTextView.setText(Float.toString(paid));
-        try{String temp=new DecimalFormat(".##").format(remaining);
-            remainingTextView.setText(temp);}
-        catch(Exception e){remainingTextView.setText((Float.toString(remaining)));}
+        try{
+            String temp=new DecimalFormat(".##").format(remaining);
+            remainingTextView.setText(temp);
+            if(remainingTextView.getText()==".0")
+                Toast.makeText(this, "Thank you! Purchase is fully successful! Talbe will be cleared!", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(this,"Remaining purchase: $"+temp, Toast.LENGTH_LONG).show();
+        }
+        catch(Exception e)
+        {
+            remainingTextView.setText((Float.toString(remaining)));
+            Toast.makeText(this,"Purchasing error! Please try again", Toast.LENGTH_LONG).show();
+        }
+
     }
 }

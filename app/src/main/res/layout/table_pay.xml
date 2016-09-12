@@ -36,7 +36,7 @@
                 android:layout_height="45dip"
                 android:textColor="#ffffff"
                 android:background="?android:attr/selectableItemBackground"
-                android:text="Save"
+                android:text="Pay"
                 android:id="@+id/saveButton"
                 android:layout_weight="10"/>
         </LinearLayout>
@@ -94,6 +94,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/totalTextView"
                         android:layout_marginLeft="10dp"
+                        android:text="0.0"
                         android:layout_weight="85"/>
 
                 </TableRow>
@@ -111,6 +112,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/paidTextView"
                         android:layout_marginLeft="10dp"
+                        android:text="0.0"
                         android:layout_weight="85"/>
 
                 </TableRow>
@@ -128,11 +130,27 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/remainingTextView"
                         android:layout_marginLeft="10dp"
+                        android:text="0.0"
                         android:layout_weight="85"/>
-
                 </TableRow>
                 <TableRow android:paddingTop="10dp">
-
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Refund: "
+                        android:id="@+id/textView13"
+                        android:layout_weight="15"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/refundTextView"
+                        android:layout_marginLeft="10dp"
+                        android:text="0.0"
+                        android:layout_weight="85"/>
+                </TableRow>
+                <TableRow android:paddingTop="10dp">
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
