@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -91,7 +93,22 @@ public class Order_Details_Category_Event extends Activity {
         return group_list;
     }
 
-    public void showToastMsg(String Msg) {
-        Toast.makeText(activity.getApplicationContext(), Msg, Toast.LENGTH_SHORT).show();
+    public void dishNameAutoTextView_onLoad(AutoCompleteTextView autoCompleteTextView)
+    {
+        //get list of Dish
+        DishDAO dishDAO= new DishDAO(activity.getBaseContext());
+        dishDAO.open();
+        ArrayList<DishBO> dishList= new ArrayList<>();
+        dishList=dishDAO.list();
+        ArrayList<String> dishNameList= new ArrayList<>();
+        for(int i=0;i<dishList.size();i++)
+        {
+            dishNameList.add(dishList.get(i).getDishName());
+        }
+        dishDAO.close();
+        //Bind data to autocompleteTextview
+        ArrayAdapter adapter = new ArrayAdapter(activity.getBaseContext(),android.R.layout.simple_expandable_list_item_1,dishNameList);
+        autoCompleteTextView.setAdapter(adapter);
+        autoCompleteTextView.setThreshold(1);
     }
 }

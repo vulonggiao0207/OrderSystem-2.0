@@ -10,5 +10,8 @@ android:layout_height="wrap_content">
     android:gravity="center_vertical"
     android:background="#dedede"
     android:paddingLeft="10dp"
+    android:dividerHeight="1dp"
+    android:textSize="16sp"
+    android:divider="#585858"
     />
 </LinearLayout>
