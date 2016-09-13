@@ -18,7 +18,7 @@ public class CategoryDAO{
     private SQLiteDatabase database;
     public CategoryDAO(Context context) {
         this.context=context;
-        databaseHelper= new DatabaseHelper(context);
+        databaseHelper= new DatabaseHelper(this.context);
         // TODO Auto-generated constructor stub
     }
     public CategoryDAO open() throws SQLException

@@ -1,10 +1,13 @@
 package com.giao.ordersystem;
 
+import java.util.ArrayList;
+
 /**
  * Created by Long on 2/13/2016.
  */
 public class CategoryBO {
     private String categoryName;
+    private ArrayList<DishBO> Dishes;
     public CategoryBO()
     {
 
@@ -21,4 +24,13 @@ public class CategoryBO {
     {
         this.categoryName=categoryName;
     }
+    public ArrayList<DishBO> getDishes() {
+        return Dishes;
+    }
+
+    public void setDishes(ArrayList<DishBO> Dishes) {
+        this.Dishes = Dishes;
+    }
+
+
 }

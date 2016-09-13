@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content">
-<Button
-    style="?android:attr/buttonStyleSmall"
+<TextView
     android:layout_width="match_parent"
     android:layout_height="45dip"
     android:text="category"
     android:id="@+id/categoryButton"
     android:gravity="center_vertical"
+    android:background="#dedede"
     android:paddingLeft="10dp"
     />
 </LinearLayout>

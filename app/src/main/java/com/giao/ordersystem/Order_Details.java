@@ -21,10 +21,12 @@ public class Order_Details extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_details);
-        String dishID = "";
+        //String dishID = "";
+        int dishID=1;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            dishID = extras.getString("dishID");
+            dishID=getIntent().getIntExtra("dishID",1);
+            //dishID = extras.getString("dishID");//Why it is null
         }
         event= new Order_Details_Event(this.getBaseContext(),this);
         //Declare controls
@@ -35,24 +37,27 @@ public class Order_Details extends Activity {
         addDishButtonOK=(Button)findViewById(R.id.addDishButtonOK);
         homeButton=(Button)findViewById(R.id.homeButton);
         //Load data to fields
-        DishInfo_OnLoad(dishID);
+        String temp=Integer.toString(dishID);
+        DishInfo_OnLoad(temp);
 
         //addDishButtonOK event OnCick
         addDishButtonOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //get dishID and orderID
-                String dishID = "";
+                int dishID=1;
                 String orderID="";
                 Bundle extras = getIntent().getExtras();
                 if (extras != null) {
-                    dishID = extras.getString("dishID");
+                    dishID=getIntent().getIntExtra("dishID", 1);
                     orderID=extras.getString("orderID");
                 }
                 String quantity=quantityEditText.getText().toString();
                 String price=priceEditText.getText().toString();
                 String note=noteEditText.getText().toString();
-                event.addDishButtonOK_OnClick(orderID,dishID,quantity,price,note);
+                String temp=Integer.toString(dishID);
+                event.addDishButtonOK_OnClick(orderID,temp,quantity,price,note);
+                onBackPressed();
             }
         });
         //homeButton event
@@ -62,7 +67,6 @@ public class Order_Details extends Activity {
                 onBackPressed();
             }
         });
-
     }
     public void DishInfo_OnLoad(String dishID)
     {

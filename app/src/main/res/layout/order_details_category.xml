@@ -9,7 +9,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:textColor="#000000"
+            android:textColor="#ffffff"
             android:background="?android:attr/selectableItemBackground"
             android:text="Back"
             android:id="@+id/homeButton"
@@ -49,7 +49,7 @@
         android:id="@+id/tableNameTextView"
         android:layout_weight="10"/>
 
-    <ListView
+    <ExpandableListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/dishCategoryListView"
