@@ -1,21 +1,28 @@
 package com.giao.ordersystem;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.R.*;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Order extends Activity{
    // private Tables_Event table_event;
+   final Context context = this;
     private Order_Event event;
 //    private Order_Details_Event orderDetails_event;
     private OrderInfo_Event orderInfo_event;
@@ -23,11 +30,19 @@ public class Order extends Activity{
     private static ListView orderListView;
     private static Spinner tableSpinner;
     private static TextView totalTextView;
+    private static Button deleteButton;
+    private static Button infoButton;
     private static Button saveButton;
     private static Button homeButton;
     private ArrayList<Order_View> OriginorderDetailCollection;
     private String selectedTable;
     private int orderID;
+    //Dialog control
+    public static TextView tableNameTextView;
+    public static EditText dateEditText;
+    public static EditText customerQuantityEditText;
+    public static EditText noteEditText;
+    public static TextView availableTextView;
     @Override
     protected void onResume()
     {
@@ -56,6 +71,8 @@ public class Order extends Activity{
         orderListView=(ListView)findViewById(R.id.orderListView);
         orderButton=(Button)findViewById(R.id.orderButton);
         totalTextView=(TextView)findViewById(R.id.totalTextView);
+        deleteButton=(Button)findViewById(R.id.deleteButton);
+        infoButton=(Button)findViewById(R.id.infoButton);
         homeButton=(Button)findViewById(R.id.homeButton);
         saveButton=(Button)findViewById(R.id.saveButton);
         //Load tableSpinner data
@@ -73,25 +90,24 @@ public class Order extends Activity{
             OriginorderDetailCollection.add((Order_View) originOrderList.getItem(i));
         }
         //tableSpinner event
-        tableSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        tableSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 //Set the selected catogory into Red
-                ((TextView)parentView.getChildAt(0)).setTextColor(Color.rgb(255, 000, 000));
+                ((TextView) parentView.getChildAt(0)).setTextColor(Color.rgb(255, 000, 000));
                 //Load Dish to ListView
-                selectedTable=tableSpinner.getItemAtPosition(position).toString();
-                orderID=orderInfo_event.getOrderbyTable(selectedTable);
+                selectedTable = tableSpinner.getItemAtPosition(position).toString();
+                orderID = orderInfo_event.getOrderbyTable(selectedTable);
                 event.orderListView_OnLoad(orderListView, selectedTable);
                 CaculateTotal();
                 //getOrginal List
                 OriginorderDetailCollection = new ArrayList<Order_View>();
-                ListAdapter originOrderList= orderListView.getAdapter();
-                for(int i=0;i<originOrderList.getCount();i++)
-                {
+                ListAdapter originOrderList = orderListView.getAdapter();
+                for (int i = 0; i < originOrderList.getCount(); i++) {
                     OriginorderDetailCollection.add((Order_View) originOrderList.getItem(i));
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here
@@ -107,22 +123,107 @@ public class Order extends Activity{
         });
 
         orderListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
-                                   int position, long id) {
-            TextView SelectecItemtextView = (TextView) findViewById(R.id.SelectecItemtextView);
-            SelectecItemtextView.setText(orderListView.getSelectedItem().toString());
-            // your code here
-        }
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
+                                       int position, long id) {
+                TextView SelectecItemtextView = (TextView) findViewById(R.id.SelectecItemtextView);
+                SelectecItemtextView.setText(orderListView.getSelectedItem().toString());
+                // your code here
+            }
 
-        @Override
-        public void onNothingSelected(AdapterView<?> parentView) {
-        }
-                                                } );
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                event.orderButton_OnClick(selectedTable);
+                String tableName=tableNameTextView.getText().toString();
+                String orderDate=dateEditText.getText().toString();
+                int NoCustomer=0;
+                if(!customerQuantityEditText.getText().toString().equals("")) NoCustomer=Integer.parseInt(customerQuantityEditText.getText().toString());;
+                String orderNote=noteEditText.getText().toString();
+                Float orderPaid=Float.parseFloat("0");
+                //Save Table info UPDATE status -->RED
+                event.orderButton_OnClick(tableName, orderDate, NoCustomer, orderNote, orderPaid);
+                availableTextView.setText("Not Available");
+                availableTextView.setTextColor(Color.RED);
+            }
+        });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orderInfo_event.orderInfoDELETE_OnClick(selectedTable);
+                availableTextView.setText("Available");
+                availableTextView.setTextColor(Color.GREEN);
+                event.orderListView_OnLoad(orderListView, selectedTable);
+                CaculateTotal();
+            }
+        });
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            Button homeButton;
+            Button orderInfoOK;
+            OrderInfo_Event event;
+            //orderDAO= new OrderDAO(this.getBaseContext());
+            //Declare controls
+            @Override
+            public void onClick(View v) {
+                // custom dialog
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.order_info);
+                event= new OrderInfo_Event(context);
+                tableNameTextView=(TextView)dialog.findViewById(R.id.tableNameTextView);
+                dateEditText=(EditText)dialog.findViewById(R.id.dateEditText);
+                customerQuantityEditText=(EditText)dialog.findViewById(R.id.customerQuantityEditText);
+                noteEditText=(EditText)dialog.findViewById(R.id.noteEditText);
+                availableTextView=(TextView)dialog.findViewById(R.id.availableTextView);
+                homeButton=(Button)dialog.findViewById(R.id.homeButton);
+                orderInfoOK=(Button)dialog.findViewById(R.id.orderInfoOK);
+                //set value to controls
+                tableNameTextView.setText(selectedTable);
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
+                Date date = new Date();
+                dateEditText.setText(dateFormat.format(date));
+                //set existed table information
+                OrderInfo_OnLoad(selectedTable);
+                //homeButton event
+                homeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                //orderInfosOK Button Event
+                orderInfoOK.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String tableName=tableNameTextView.getText().toString();
+                        String orderDate=dateEditText.getText().toString();
+                        int NoCustomer=0;
+                        if(!customerQuantityEditText.getText().toString().equals("")) NoCustomer=Integer.parseInt(customerQuantityEditText.getText().toString());;
+                        String orderNote=noteEditText.getText().toString();
+                        Float orderPaid=Float.parseFloat("0");
+                        //Save Table info UPDATE status -->RED
+                        event.orderInfoOK_OnClick(tableName, orderDate, NoCustomer, orderNote, orderPaid);
+                        availableTextView.setText("Not Available");
+                        availableTextView.setTextColor(Color.RED);
+                    }
+                });
+                dialog.show();
+            }
+            public void OrderInfo_OnLoad(String tableName)
+            {
+                OrderBO orderBO=event.OrderInfo_OnLoad(tableName);
+                availableTextView.setText("Available");
+                availableTextView.setTextColor(Color.GREEN);
+                if(orderBO.getTableName()!=null) {
+                    tableNameTextView.setText(orderBO.getTableName());
+                    dateEditText.setText(orderBO.getOrderDate());
+                    customerQuantityEditText.setText(Integer.toString(orderBO.getNumberOfCustomer()));
+                    noteEditText.setText(orderBO.getOrderNote());
+                    availableTextView.setText("Not Available");
+                    availableTextView.setTextColor(Color.RED);
+                }
             }
         });
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +237,7 @@ public class Order extends Activity{
                 {
                     orderDetailCollection.add((Order_View) orderList.getItem(i));
                 }
-                event.saveButton_OnClick(selectedTable,OriginorderDetailCollection,orderDetailCollection,orderID);
+                event.saveButton_OnClick(selectedTable, OriginorderDetailCollection, orderDetailCollection, orderID);
                 CaculateTotal();
             }
         });

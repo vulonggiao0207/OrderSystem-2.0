@@ -26,7 +26,6 @@ public class OrderInfo extends Activity{
 
     private Button homeButton;
     private Button orderInfoOK;
-    private Button orderInfoDELETE;
     private OrderInfo_Event event;
     private String tableName;
     @Override
@@ -47,7 +46,6 @@ public class OrderInfo extends Activity{
         availableTextView=(TextView)findViewById(R.id.availableTextView);
         homeButton=(Button)findViewById(R.id.homeButton);
         orderInfoOK=(Button)findViewById(R.id.orderInfoOK);
-        orderInfoDELETE=(Button)findViewById(R.id.orderInfoDELETE);
         //set value to controls
         tableNameTextView.setText(tableName);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
@@ -77,14 +75,7 @@ public class OrderInfo extends Activity{
                 availableTextView.setTextColor(Color.RED);
             }
         });
-        orderInfoDELETE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                event.orderInfoDELETE_OnClick(tableName);
-                availableTextView.setText("Available");
-                availableTextView.setTextColor(Color.GREEN);
-            }
-        });
+
     }
     public void OrderInfo_OnLoad(String tableName)
     {

@@ -32,21 +32,13 @@ public class OrderInfo_Event {
                 //Toast.makeText(context, "Update table information succesfully", Toast.LENGTH_LONG).show();
             }
             orderDAO.close();
-            //Open Dish Category
-            orderDAO.open();
-            orderID=orderDAO.checkTableAvailable(tableName);
-            orderDAO.close();
-            Intent intent = new Intent(context,Order_Details_Category.class);
-            intent.putExtra("orderID",orderID);
-            intent.putExtra("tableName",tableName);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
         }
         catch (Exception e) {
             Toast.makeText(context, "Failed to update table information", Toast.LENGTH_LONG).show();
             orderDAO.close();
         }
     }
+
     public void orderInfoDELETE_OnClick(String tableName)
     {
         try{

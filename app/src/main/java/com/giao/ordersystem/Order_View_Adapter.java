@@ -71,8 +71,16 @@ public class Order_View_Adapter extends BaseAdapter {
         //set data
         dishIDTextView.setText(Integer.toString(temp.getDishID()));
         orderDetailIDTextView.setText(Integer.toString(temp.getOrderDetailID()));
-        try{quantityTextView.setText(Integer.toString(temp.getQuantity().intValue()));}
-            catch(Exception e){quantityTextView.setText(Float.toString(temp.getQuantity()));}
+        try{
+            if(temp.getQuantity()-temp.getQuantity().intValue()==0)
+                quantityTextView.setText(Integer.toString(temp.getQuantity().intValue()));
+            else
+                quantityTextView.setText(Float.toString(temp.getQuantity()));
+        }
+        catch(Exception e)
+        {
+            quantityTextView.setText(Float.toString(temp.getQuantity()));
+        }
         dishNameTextView.setText(temp.getdishName());
         subtotalTextView.setText("$"+Float.toString(temp.getSubtotal()));
         noteTextView.setText(temp.getNote());

@@ -45,13 +45,39 @@ public class Order_Event extends Activity {
         tableSpinner.setAdapter(tableAdapter);
         tableDAO.close();
     }
-    public void orderButton_OnClick(String tableName)
+    public void orderButton_OnClick(String tableName, String orderDate,  int numberOfcustomer, String orderNote,float orderPaid)
     {
-        Intent intent = new Intent(context,OrderInfo.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("tableName", tableName);
-        context.startActivity(intent);
-        finish();
+
+        try {
+            orderDAO.open();
+            //Check if the table is available
+            //IF it available. Add new to Order
+            //ELSE update current records in Order
+            String orderID=orderDAO.checkTableAvailable(tableName);
+            if(orderID.equals("")) {
+                orderDAO.create(tableName, orderDate, numberOfcustomer, orderNote, orderPaid);
+                Toast.makeText(context, "Insert new table information succesfully", Toast.LENGTH_LONG).show();
+            }
+            else {
+                orderDAO.update(orderID, tableName, orderDate, numberOfcustomer, orderNote, orderPaid);
+                //Toast.makeText(context, "Update table information succesfully", Toast.LENGTH_LONG).show();
+            }
+            orderDAO.close();
+            //Open Dish Category
+            orderDAO.open();
+            orderID=orderDAO.checkTableAvailable(tableName);
+            orderDAO.close();
+            Intent intent = new Intent(context,Order_Details_Category.class);
+            intent.putExtra("orderID",orderID);
+            intent.putExtra("tableName",tableName);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        }
+        catch (Exception e) {
+            Toast.makeText(context, "Failed to update table information", Toast.LENGTH_LONG).show();
+            orderDAO.close();
+        }
+
 
     }
     public void saveButton_OnClick(String tableName,ArrayList<Order_View> orginalOrder_viewArrayList,ArrayList<Order_View> order_viewArrayList,int orderID)
