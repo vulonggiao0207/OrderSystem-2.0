@@ -153,7 +153,7 @@ public class Order_Event extends Activity {
                 msg="\n\n================================\n"+"Table: "+tableName +"\n";
                 msg+=orderBO.getOrderDate()+"\n";
                 msg+="Guest: "+orderBO.getNumberOfCustomer()+"\n";
-                msg+="Comment: "+orderBO.getOrderNote()+"\n";
+                msg+="Note: "+orderBO.getOrderNote()+"\n";
                 msg+="================================\n";
                 for(int i=0;i<orderList.size();i++)
                 {

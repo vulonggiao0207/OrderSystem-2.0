@@ -41,8 +41,7 @@
         android:textSize="32sp"
         android:textColor="#b1cef4"
         android:background="#ffffff"
-        android:id="@+id/SelectecItemtextView"
-        />
+        android:id="@+id/SelectecItemtextView"/>
 
     <LinearLayout
         android:orientation="vertical"

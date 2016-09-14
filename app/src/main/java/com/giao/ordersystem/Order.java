@@ -18,6 +18,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Order extends Activity{
@@ -60,6 +61,7 @@ public class Order extends Activity{
         {
             OriginorderDetailCollection.add((Order_View) originOrderList.getItem(i));
         }
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +125,14 @@ public class Order extends Activity{
                 for (int i = 0; i < originOrderList.getCount(); i++) {
                     OriginorderDetailCollection.add((Order_View) originOrderList.getItem(i));
                 }
+                //Load info of the first selected table
+                //OrderInfo_OnLoad(selectedTable);
+                // set value to controls
+                tableNameTextView.setText(selectedTable);
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
+                Date date = new Date();
+                dateEditText.setText(dateFormat.format(date));
+
             }
 
             @Override
@@ -155,6 +165,9 @@ public class Order extends Activity{
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Load Table information
+                //OrderInfo_OnLoad(selectedTable);
+                //Get information from Order info
                 String tableName=tableNameTextView.getText().toString();
                 String orderDate=dateEditText.getText().toString();
                 int NoCustomer=0;
@@ -162,6 +175,7 @@ public class Order extends Activity{
                 String orderNote=noteEditText.getText().toString();
                 Float orderPaid=Float.parseFloat("0");
                 //Save Table info UPDATE status -->RED
+                info_event.orderInfoOK_OnClick(tableName, orderDate, NoCustomer, orderNote, orderPaid);
                 event.orderButton_OnClick(tableName, orderDate, NoCustomer, orderNote, orderPaid);
                 availableTextView.setText("Not Available");
                 availableTextView.setTextColor(Color.RED);
@@ -182,14 +196,15 @@ public class Order extends Activity{
             //Declare controls
             @Override
             public void onClick(View v) {
-                //set value to controls
+
+                //infoButton event//
+                // set value to controls
                 tableNameTextView.setText(selectedTable);
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
                 Date date = new Date();
                 dateEditText.setText(dateFormat.format(date));
                 //set existed table information
                 OrderInfo_OnLoad(selectedTable);
-                //homeButton event
                 closeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -253,6 +268,12 @@ public class Order extends Activity{
             availableTextView.setText("Not Available");
             availableTextView.setTextColor(Color.RED);
         }
+       /* else
+        {
+            tableNameTextView.setText(selectedTable);
+            //dateEditText.setText((new Calendar.getInstance()).ToString());
+            //customerQuantityEditText.setText(Integer.toString(orderBO.getNumberOfCustomer()));
+        }*/
     }
     public static void CaculateTotal()
     {

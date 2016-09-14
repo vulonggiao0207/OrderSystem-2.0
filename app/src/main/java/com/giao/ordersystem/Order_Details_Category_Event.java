@@ -107,7 +107,7 @@ public class Order_Details_Category_Event extends Activity {
         }
         dishDAO.close();
         //Bind data to autocompleteTextview
-        ArrayAdapter adapter = new ArrayAdapter(activity.getBaseContext(),android.R.layout.simple_expandable_list_item_1,dishNameList);
+        ArrayAdapter adapter = new ArrayAdapter(activity.getBaseContext(),android.R.layout.simple_list_item_1,dishNameList);
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.setThreshold(1);
     }

@@ -20,7 +20,7 @@ public class Order_Details_Category extends Activity{
     Order_Details_Category_Event event;
     TextView tableNameTextView;
     Button homeButton;
-    Button okButton;
+    //Button okButton;
     ExpandableListView dishCategoryListView;
     AutoCompleteTextView dishAutoTextView;
     String orderID="";
@@ -37,7 +37,7 @@ public class Order_Details_Category extends Activity{
         }
         //Declare controls
         tableNameTextView=(TextView)findViewById(R.id.tableNameTextView);
-        okButton=(Button)findViewById(R.id.OKButton);
+        //okButton=(Button)findViewById(R.id.OKButton);
         dishAutoTextView=(AutoCompleteTextView)findViewById(R.id.dishNameAutoTextView);
         dishCategoryListView=(ExpandableListView)findViewById(R.id.dishCategoryListView);
         homeButton=(Button)findViewById(R.id.homeButton);
@@ -45,7 +45,7 @@ public class Order_Details_Category extends Activity{
         tableNameTextView.setText(tableName);
         //Load data to dishNameAutoTextView
         event.dishNameAutoTextView_onLoad(dishAutoTextView);
-        okButton.setOnClickListener(new View.OnClickListener() {
+        /*okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DishDAO dishDAO = new DishDAO(getBaseContext());
@@ -54,34 +54,49 @@ public class Order_Details_Category extends Activity{
                 dishList = dishDAO.list();
                 int dishID = dishList.get(curPosition).getDishID();
                 //Open Order Details
+                dishAutoTextView.setText("");
                 Intent intent = new Intent(getBaseContext(), Order_Details.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("dishID", dishID);
                 intent.putExtra("orderID", orderID);
                 startActivity(intent);
-                dishAutoTextView.setText("");
+
             }
-        });
+        });*/
         dishAutoTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                curPosition=position;
                 DishDAO dishDAO = new DishDAO(getBaseContext());
                 dishDAO.open();
                 ArrayList<DishBO> dishList = new ArrayList<>();
                 dishList = dishDAO.list();
-                int dishID = dishList.get(position).getDishID();
-                //Open Order Details
-                Intent intent = new Intent(getBaseContext(), Order_Details.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("dishID", dishID);
-                intent.putExtra("orderID", orderID);
-                startActivity(intent);
+
+                //Get position in Original Dish List
+                String selection = (String) parent.getItemAtPosition(position);
+                curPosition = -1;
+                for (int i = 0; i < dishList.size(); i++) {
+                    if (dishList.get(i).getDishName().equals(selection)) {
+                        curPosition = i;
+                        int dishID = dishList.get(curPosition).getDishID();
+                        //Open Order Details
+                        dishAutoTextView.setText("");
+                        Intent intent = new Intent(getBaseContext(), Order_Details.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("dishID", dishID);
+                        intent.putExtra("orderID", orderID);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+
+
             }
         });
         dishAutoTextView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                curPosition=position;
+
             }
 
             @Override
