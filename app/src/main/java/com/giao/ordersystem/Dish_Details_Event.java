@@ -39,9 +39,15 @@ public class Dish_Details_Event extends Activity {
     public void saveDishButton_OnClick(String dishID, String Category, String Name, String Price, String Description, String Availability)
     {
         try {
-            if(Name==""){Toast.makeText(context, "Dish Name cannot be blank", Toast.LENGTH_LONG).show(); return;}
-            if(Price==""){Toast.makeText(context, "Dish Price cannot be blank", Toast.LENGTH_LONG).show(); return;}
-            if(Availability==""){Toast.makeText(context, "Dish Availability cannot be blank", Toast.LENGTH_LONG).show(); return;}
+            String msg="Error:";
+            boolean flag=true;
+            if(Name.trim().equals("")){msg+="\nDish Name cannot be blank"; flag=false;}
+            if(Price.trim().equals("")){msg+="\nDish Price cannot be blank"; flag=false;}
+            if(Availability.trim().equals("")){msg+="\nDish Availability cannot be blank"; flag=false;}
+            if(flag==false) {
+                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+                return;
+            }
             dishDAO.open();
             dishDAO.update(dishID,Category,Name,Price,Description,Availability);
             Toast.makeText(context, "Update successfully", Toast.LENGTH_LONG).show();

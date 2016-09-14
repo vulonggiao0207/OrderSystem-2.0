@@ -68,7 +68,6 @@ public class Setting_Event extends Activity {
             categoryDAO.close();
         }
     }
-    private AlertDialog.Builder build;
     public void saveButton_Click(ArrayList<TableBO> tableCollection, ArrayList<CategoryBO> categoryCollection)
     {
 
@@ -94,6 +93,42 @@ public class Setting_Event extends Activity {
         }
         categoryDAO.close();
 
+    }
+    public boolean isExistTable(String tableName)
+    {
+        tableDAO.open();
+        ArrayList<TableBO> tablelist =tableDAO.list();
+        tableDAO.close();
+        //Create list to contain tableList
+        ArrayList<String> tableNameList=new ArrayList<>();
+        for(TableBO i: tablelist)
+        {
+            tableNameList.add(i.getTableName());
+        }
+        //check if table already exists
+        if(tableNameList.contains(tableName)) {
+            Toast.makeText(context, "Table already exists", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        return false;
+    }
+    public boolean isExistCategory(String categoryName)
+    {
+        categoryDAO.open();
+        ArrayList<CategoryBO> categorylist =categoryDAO.list();
+        categoryDAO.close();
+        //Create list to contain tableList
+        ArrayList<String> categoryNameList=new ArrayList<>();
+        for(CategoryBO i: categorylist)
+        {
+            categoryNameList.add(i.getCategoryName());
+        }
+        //Check if category already exists
+        if(categoryNameList.contains(categoryName)) {
+            Toast.makeText(context, "Category already exists",Toast.LENGTH_LONG ).show();
+            return true;
+        }
+        return false;
     }
   /*  public void homeButton_Click() {
         onBackPressed();

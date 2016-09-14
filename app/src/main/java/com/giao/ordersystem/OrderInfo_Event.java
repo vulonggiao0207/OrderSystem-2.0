@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Long on 5/13/2016.
  */
@@ -80,5 +85,23 @@ public class OrderInfo_Event {
         {
             return 0;
         }
+    }
+    public boolean isValidDate(String dateSTring)
+    {
+        boolean res=true;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd'/'MM'/'yyyy HH:mm:ss");
+        //To make strict date format validation
+        formatter.setLenient(false);
+        Date parsedDate = null;
+        try {
+            parsedDate = formatter.parse(dateSTring);
+            formatter.format(parsedDate);
+
+        } catch (ParseException e) {
+            Toast.makeText(context, "DateTime Formate:\n- dd/MM/yyyy HH:mm:ss\n" +
+                    "- is not blank", Toast.LENGTH_LONG).show();
+            res=false;
+        }
+        return res;
     }
 }

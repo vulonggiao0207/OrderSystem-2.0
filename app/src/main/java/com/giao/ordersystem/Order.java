@@ -113,7 +113,7 @@ public class Order extends Activity{
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 //Set the selected catogory into Red
-                ((TextView) parentView.getChildAt(0)).setTextColor(Color.rgb(255, 000, 000));
+                ((TextView) parentView.getChildAt(0)).setTextColor(Color.rgb(000, 000, 255));
                 //Load Dish to ListView
                 selectedTable = tableSpinner.getItemAtPosition(position).toString();
                 orderID = orderInfo_event.getOrderbyTable(selectedTable);
@@ -221,6 +221,10 @@ public class Order extends Activity{
                         if(!customerQuantityEditText.getText().toString().equals("")) NoCustomer=Integer.parseInt(customerQuantityEditText.getText().toString());;
                         String orderNote=noteEditText.getText().toString();
                         Float orderPaid=Float.parseFloat("0");
+                        if(info_event.isValidDate(orderDate)==false)
+                        {
+                            return;
+                        }
                         //Save Table info UPDATE status -->RED
                         info_event.orderInfoOK_OnClick(tableName, orderDate, NoCustomer, orderNote, orderPaid);
                         availableTextView.setText("Not Available");

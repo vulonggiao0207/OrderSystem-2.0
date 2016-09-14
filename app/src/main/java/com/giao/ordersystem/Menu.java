@@ -45,7 +45,7 @@ public class Menu extends Activity{
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 //Set the selected catogory into Red
-                ((TextView)parentView.getChildAt(0)).setTextColor(Color.rgb(255, 000, 000));
+                ((TextView)parentView.getChildAt(0)).setTextColor(Color.rgb(000, 000, 255));
                 selectedCategory=parentView.getItemAtPosition(position).toString();
                 //Load Dish to ListView
                 event.dishListView_OnLoad(dishListView,selectedCategory);

@@ -24,35 +24,34 @@
             android:layout_height="1dp"
             android:id="@+id/dishIDTextView" />
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:id="@+id/quantityTextView"
         android:layout_toLeftOf="@+id/dishNameTextView"
         android:singleLine="true"
         android:textColor="#000000"
-        android:inputType="text"
-        android:layout_weight="10"
-        android:paddingLeft="5dp"
-        android:layout_gravity="left" />
+        android:inputType="textMultiLine"
+        android:textSize="16sp"
+        android:paddingLeft="5dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/dishNameTextView"
-            android:singleLine="true"
+            android:inputType="textMultiLine"
             android:textColor="#000000"
             android:paddingLeft="5dp"
-            android:layout_weight="70"
-            android:layout_gravity="right" />
+            android:textSize="16sp"
+            android:layout_weight="80" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:id="@+id/subtotalTextView"
             android:singleLine="true"
             android:layout_toLeftOf="@+id/OrderViewDeleteButton"
+            android:inputType="textMultiLine"
             android:textColor="#000000"
-            android:paddingLeft="5dp"
-            android:layout_weight="10"
-            android:layout_gravity="left|right" />
+            android:textSize="16sp"
+            android:paddingLeft="5dp"/>
 
         </TableRow>
         <TableRow>
@@ -62,6 +61,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/noteTextView"
             android:inputType="textMultiLine"
+            android:paddingStart="30dp"
+            android:textSize="16sp"
             android:textColor="#FF0000"
             android:paddingLeft="10dp"/>
         </TableRow>

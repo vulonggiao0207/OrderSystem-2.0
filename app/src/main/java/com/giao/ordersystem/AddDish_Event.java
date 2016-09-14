@@ -23,6 +23,15 @@ public class AddDish_Event extends Activity {
     public void addDishButtonOK_OnClick(String Category, String Name, String Price, String Description, String Availability)
     {
         try {
+            String msg="Error:";
+            boolean flag=true;
+            if(Name.trim().equals("")){msg+="\nDish Name cannot be blank"; flag=false;}
+            if(Price.trim().equals("")){msg+="\nDish Price cannot be blank"; flag=false;}
+            if(Availability.trim().equals("")){msg+="\nDish Availability cannot be blank"; flag=false;}
+            if(flag==false) {
+                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+                return;
+            }
             dishDAO.open();
             dishDAO.create(Category, Name, Price, Description, Availability);
             Toast.makeText(context, "Insert new dish succesfully", Toast.LENGTH_LONG).show();

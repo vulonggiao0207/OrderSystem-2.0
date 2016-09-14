@@ -14,6 +14,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.ServiceLoader;
 import android.content.Context;
+import android.widget.Toast;
 
 public class Setting extends Activity{
     private Button addTableButton;
@@ -57,6 +58,8 @@ public class Setting extends Activity{
             @Override
             public void onClick(View v) {
                 String tableName=tableEditText.getText().toString();
+                if(event.isExistTable(tableName)==true)
+                    return;
                 event.addTableButton_Click(tableName,tableListView);
             }
         });
@@ -66,7 +69,10 @@ public class Setting extends Activity{
             @Override
             public void onClick(View v) {
                 String categoryName=categoryEditText.getText().toString();
-                event.addCategoryButton_Click(categoryName, catetoryListView);      }
+                if(event.isExistCategory(categoryName)==true)
+                    return;
+                event.addCategoryButton_Click(categoryName, catetoryListView);
+            }
         });
         //SaveButton, OnClickListener
         saveButton=(Button)findViewById(R.id.saveButton);
