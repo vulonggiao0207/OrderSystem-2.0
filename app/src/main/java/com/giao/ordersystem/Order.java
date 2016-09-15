@@ -127,12 +127,13 @@ public class Order extends Activity{
                 }
                 //Load info of the first selected table
                 //OrderInfo_OnLoad(selectedTable);
-                // set value to controls
+                // reset value to controls
                 tableNameTextView.setText(selectedTable);
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
                 Date date = new Date();
                 dateEditText.setText(dateFormat.format(date));
-
+                customerQuantityEditText.setText("0");
+                noteEditText.setText("");
             }
 
             @Override
@@ -170,21 +171,35 @@ public class Order extends Activity{
                 //Get information from Order info
                 String tableName=tableNameTextView.getText().toString();
                 String orderDate=dateEditText.getText().toString();
+                //Because after delete Datetime="" -->before save to DB, need to update current time
+                if(orderDate.trim().equals("")) {
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
+                    Date date = new Date();
+                    orderDate=dateFormat.format(date);
+                }
                 int NoCustomer=0;
-                if(!customerQuantityEditText.getText().toString().equals("")) NoCustomer=Integer.parseInt(customerQuantityEditText.getText().toString());;
+                if(!customerQuantityEditText.getText().toString().equals(""))
+                    NoCustomer=Integer.parseInt(customerQuantityEditText.getText().toString());;
                 String orderNote=noteEditText.getText().toString();
                 Float orderPaid=Float.parseFloat("0");
                 //Save Table info UPDATE status -->RED
                 info_event.orderInfoOK_OnClick(tableName, orderDate, NoCustomer, orderNote, orderPaid);
+                //Update if any dish has been removed
                 event.orderButton_OnClick(tableName, orderDate, NoCustomer, orderNote, orderPaid);
-                availableTextView.setText("Not Available");
-                availableTextView.setTextColor(Color.RED);
+                //availableTextView.setText("Not Available");
+                //availableTextView.setTextColor(Color.RED);
             }
         });
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 orderInfo_event.orderInfoDELETE_OnClick(selectedTable);
+                // reset value to controls
+                tableNameTextView.setText(selectedTable);
+                dateEditText.setText("");
+                customerQuantityEditText.setText("0");
+                noteEditText.setText("");
+                //update
                 availableTextView.setText("Available");
                 availableTextView.setTextColor(Color.GREEN);
                 event.orderListView_OnLoad(orderListView, selectedTable);
@@ -198,11 +213,13 @@ public class Order extends Activity{
             public void onClick(View v) {
 
                 //infoButton event//
-                // set value to controls
+                // reset value to controls
                 tableNameTextView.setText(selectedTable);
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
                 Date date = new Date();
                 dateEditText.setText(dateFormat.format(date));
+                customerQuantityEditText.setText("0");
+                noteEditText.setText("");
                 //set existed table information
                 OrderInfo_OnLoad(selectedTable);
                 closeButton.setOnClickListener(new View.OnClickListener() {
