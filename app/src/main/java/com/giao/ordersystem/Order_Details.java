@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Long on 5/19/2016.
@@ -56,6 +57,17 @@ public class Order_Details extends Activity {
                 String price=priceEditText.getText().toString();
                 String note=noteEditText.getText().toString();
                 String temp=Integer.toString(dishID);
+                try
+                {
+                    if(Float.parseFloat(quantity)<=0){
+                        Toast.makeText(getBaseContext(), "Quantity should more than 0", Toast.LENGTH_LONG).show();return;}
+                    if(Float.parseFloat(price)<=0){Toast.makeText(getBaseContext(), "Price should more than $0",Toast.LENGTH_LONG ).show();return;}
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(getBaseContext(), "Failed. Please try again",Toast.LENGTH_LONG ).show();
+                    return;
+                }
                 event.addDishButtonOK_OnClick(orderID,temp,quantity,price,note);
                 onBackPressed();
             }

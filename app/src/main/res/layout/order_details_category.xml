@@ -71,9 +71,9 @@
         android:layout_height="match_parent"
         android:id="@+id/dishCategoryListView"
         android:background="#ffffff"
-        android:layout_weight="70"
         android:isScrollContainer="false"
         android:dividerHeight="1dp"
-        android:divider="#868484"/>
+        android:divider="#868484"
+        android:layout_weight="100" />
 
 </LinearLayout>

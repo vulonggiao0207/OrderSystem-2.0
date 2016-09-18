@@ -9,8 +9,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Long on 2/8/2016.
@@ -150,15 +153,36 @@ public class Order_Event extends Activity {
             else
             {
                 Float total=0.0f;
-                msg="\n\n================================\n"+"Table: "+tableName +"\n";
-                msg+=orderBO.getOrderDate()+"\n";
+                msg+="      TAM GIAO RESTAURANT      \n\n";
+                msg+="          TAX INVOICE";
+                msg+="\n================================\n"+"Table: "+tableName +"\n";
+                if(orderBO.getOrderDate().equals("null"))
+                {
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss ");
+                    Date date = new Date();
+                    msg +=dateFormat.format(date);
+                }
+                else
+                    msg+=orderBO.getOrderDate()+"\n";
                 msg+="Guest: "+orderBO.getNumberOfCustomer()+"\n";
                 msg+="Note: "+orderBO.getOrderNote()+"\n";
                 msg+="================================\n";
                 for(int i=0;i<orderList.size();i++)
                 {
                     Order_View temp=(Order_View)orderList.get(i);
-                    msg +=Float.toString(temp.getQuantity())+" x ";
+                    //Check whether quantity is decimal or integer
+                    String quantity_str;
+                    try{//Try to convert it into Integer
+                        if(temp.getQuantity()-temp.getQuantity().intValue()==0)
+                            quantity_str=(Integer.toString(temp.getQuantity().intValue()));
+                        else//If not convert to Decimal
+                            quantity_str=(Float.toString(temp.getQuantity()));
+                    }
+                    catch(Exception e)
+                    {//Error -->Convert to decimal
+                        quantity_str=(Float.toString(temp.getQuantity()));
+                    }
+                    msg +=quantity_str+" x ";
                     msg +=temp.getdishName();
                     msg +="\n                        $"+Float.toString(temp.getSubtotal())+" \n";
                     if(!(temp.getNote().trim()).equals(""))

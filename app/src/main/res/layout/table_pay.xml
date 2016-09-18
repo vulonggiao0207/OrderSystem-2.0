@@ -76,6 +76,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/tableNameTextView"
                         android:layout_weight="85"
+                        android:paddingLeft="5dp"
                         android:textColor="#2c3489"/>
                 </TableRow>
                 <TableRow android:paddingTop="10dp">
@@ -92,6 +93,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/totalTextView"
                         android:text="0.0"
+                        android:paddingLeft="5dp"
                         android:layout_weight="85"/>
 
                 </TableRow>
@@ -109,6 +111,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/paidTextView"
                         android:text="0.0"
+                        android:paddingLeft="5dp"
                         android:layout_weight="85"/>
 
                 </TableRow>
@@ -126,6 +129,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/remainingTextView"
                         android:text="0.0"
+                        android:paddingLeft="5dp"
                         android:layout_weight="85"/>
                 </TableRow>
                 <TableRow android:paddingTop="10dp">
@@ -142,6 +146,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/refundTextView"
                         android:text="0.0"
+                        android:paddingLeft="5dp"
                         android:layout_weight="85"/>
                 </TableRow>
                 <TableRow>

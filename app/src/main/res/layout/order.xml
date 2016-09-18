@@ -84,8 +84,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:background="#ffffff"
-            android:layout_weight="10">
+            android:background="#ffffff">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -98,13 +97,13 @@
         </LinearLayout>
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:id="@+id/orderListView"
             android:background="#ffffff"
-            android:layout_weight="65"
             android:isScrollContainer="false"
             android:divider="#b5b5b5"
-            android:dividerHeight="1dp"/>
+            android:dividerHeight="1dp"
+            android:layout_weight="100" />
         </LinearLayout>
 
 

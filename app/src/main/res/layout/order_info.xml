@@ -61,7 +61,7 @@
         android:padding="10dp">
         <TableRow>
             <TextView
-                android:layout_width="145dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Table:"
@@ -73,11 +73,12 @@
                 android:text="Medium Text"
                 android:id="@+id/tableNameTextView"
                 android:layout_weight="85"
+                android:paddingLeft="3dp"
                 android:textColor="#2c3489"/>
         </TableRow>
         <TableRow android:paddingTop="10dp">
             <TextView
-                android:layout_width="145dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Date:"
@@ -88,12 +89,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/dateEditText"
                 android:inputType="textMultiLine"
-                android:layout_weight="85"/>
+                android:layout_weight="85"
+                android:paddingLeft="3dp"/>
 
         </TableRow>
         <TableRow>
             <TextView
-                android:layout_width="145dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Number of guest:"
@@ -105,12 +107,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/customerQuantityEditText"
                 android:inputType="number"
-                android:layout_weight="85"/>
+                android:layout_weight="85"
+                android:paddingLeft="3dp"/>
 
         </TableRow>
         <TableRow>
             <TextView
-                android:layout_width="145dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Note:"
@@ -121,7 +124,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:id="@+id/noteEditText"
-                android:layout_weight="85"/>
+                android:layout_weight="85"
+                android:paddingLeft="3dp"/>
 
         </TableRow>
         <TableRow>

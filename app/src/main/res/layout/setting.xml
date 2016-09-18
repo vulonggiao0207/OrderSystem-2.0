@@ -109,7 +109,8 @@
                     android:divider="#b5b5b5"
                     android:dividerHeight="1dp"
                     android:id="@+id/tableListView"
-                    android:isScrollContainer="false"/>
+                    android:isScrollContainer="false"
+                        android:layout_weight="1" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -162,7 +163,8 @@
                     android:divider="#b5b5b5"
                     android:dividerHeight="1dp"
                 android:id="@+id/categoryListView"
-                    android:isScrollContainer="false"/>
+                    android:isScrollContainer="false"
+                    android:layout_weight="1" />
                     </LinearLayout>
 
             </LinearLayout>

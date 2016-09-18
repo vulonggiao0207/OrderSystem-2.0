@@ -84,6 +84,7 @@ public class OrderDetailsDAO {
         query+=" AND Tables.TableName='"+tableName+"'";
         query+=" GROUP BY orderpaid,Orders.OrderID";
         query+=" HAVING Orders.OrderPaid<Sum(quantity*price)))";
+
         Cursor cur=database.rawQuery(query,null);
         ArrayList<Order_View> list = new ArrayList<Order_View>();
         int iRow= cur.getColumnIndex(KEY_OrderDetailID);
