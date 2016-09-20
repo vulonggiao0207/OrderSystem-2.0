@@ -153,7 +153,7 @@ public class Order_Event extends Activity {
             else
             {
                 Float total=0.0f;
-                msg+="      TAM GIAO RESTAURANT      \n\n";
+                msg+="\n      XYZ RESTAURANT      \n\n";
                 msg+="          TAX INVOICE";
                 msg+="\n================================\n"+"Table: "+tableName +"\n";
                 if(orderBO.getOrderDate().equals("null"))

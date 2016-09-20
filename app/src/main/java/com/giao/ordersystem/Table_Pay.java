@@ -93,7 +93,7 @@ public class Table_Pay extends Activity {
                 }
                 catch(Exception e)
                 {
-                    Toast.makeText(getBaseContext(), "Failed to update table payment. Try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Failed to update table purchase. Try again.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -123,10 +123,14 @@ public class Table_Pay extends Activity {
                 temp = new DecimalFormat("#.##").format(remaining);
                 remainingTextView.setText(temp);
             }
-            if (remainingTextView.getText() == "0.0")
-                Toast.makeText(this, "Thank you! Purchase is fully successful! Table will be cleared!", Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(this, "Remaining purchase: $" + temp, Toast.LENGTH_LONG).show();
+            if(!totalTextView.getText().equals("0.0")) {
+                if (remainingTextView.getText().equals("0.0")) {
+                    Toast.makeText(this, "Purchase is fully successful! Table will be cleared! Please press 'Back'", Toast.LENGTH_LONG).show();
+                    saveButton.setEnabled(false);
+                }
+                else
+                    Toast.makeText(this, "Remaining purchase: $" + temp, Toast.LENGTH_LONG).show();
+            }
 
         }
         catch(Exception e)

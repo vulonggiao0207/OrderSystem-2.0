@@ -93,7 +93,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        Log.w(TableDAO.class.getName(), "Upgrading database from old to new version...");
         db.execSQL("DROP TABLE IF EXISTs " + TABLE_TABLES);
         db.execSQL("DROP TABLE IF EXISTs " + TABLE_MENU);
         db.execSQL("DROP TABLE IF EXISTs " + TABLE_CATEGORY);
